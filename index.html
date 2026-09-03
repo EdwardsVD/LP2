@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lyric Player v0.5.0 · Vanilla</title>
+<title>Lyric Player v0.6.0 B1 · Vanilla</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bangers&family=Bebas+Neue&family=Caveat:wght@400;700&family=Comic+Neue:wght@400;700&family=Dancing+Script:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&family=Lora:wght@400;600;700&family=Merriweather:wght@400;700&family=Montserrat:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;600;700&family=Pacifico&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@400;600;700;800&family=Righteous&family=Roboto+Slab:wght@400;600;700&family=Rubik:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Bungee&family=Comfortaa:wght@300;400;600;700&family=Fredoka:wght@300;400;500;600;700&family=Quicksand:wght@300;400;600;700&family=Archivo+Black&family=Bangers&family=Bebas+Neue&family=Caveat:wght@400;700&family=Comic+Neue:wght@400;700&family=Dancing+Script:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&family=Lora:wght@400;600;700&family=Merriweather:wght@400;700&family=Montserrat:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;600;700&family=Pacifico&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@400;600;700;800&family=Righteous&family=Roboto+Slab:wght@400;600;700&family=Rubik:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet" />
 <style>
 /* ============ LYRIC PLAYER VANILLA — custom CSS, no Tailwind, no React ============ */
 *,*::before,*::after{box-sizing:border-box}
@@ -261,6 +261,50 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
 .mode-card .tag{font-size:8px;background:var(--line);color:var(--dim);border-radius:3px;padding:2px 4px}
 .mode-card .d{font-family:var(--mono);font-size:8px;color:var(--dim);margin-top:3px}
 
+
+/* ==================== v0.6.0 B1 — MODE & LYRIC CARD ==================== */
+#mode-seg{display:flex;gap:3px;padding:4px;background:rgba(10,10,10,.55);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:999px}
+#mode-seg .chip{border:none;background:transparent;padding:6px 12px;border-radius:999px;transition:background-color .18s,color .18s,transform .12s}
+#mode-seg .chip:hover{transform:translateY(-1px)}
+#mode-seg .chip.on{background:var(--acid);color:#050505;font-weight:800}
+#card-holder{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;z-index:12;pointer-events:none;padding:64px 16px 150px}
+.lc-wrap{pointer-events:auto;width:min(740px,94vw)}
+.lc-box{background:rgba(12,18,42,.82);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:26px 28px 20px;box-shadow:0 26px 90px rgba(0,0,0,.6),0 2px 10px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.14);color:#fff;transition:background-color .25s,border-radius .25s}
+.lc-top{display:flex;gap:18px;align-items:flex-start}
+#lc-cover{width:clamp(64px,12vw,104px);aspect-ratio:1/1;border-radius:10px;flex:none;overflow:hidden;background:linear-gradient(145deg,#232c4e,#0a0f1e);display:flex;align-items:center;justify-content:center;font-size:30px;cursor:pointer;border:1px solid rgba(255,255,255,.14);transition:transform .2s,box-shadow .2s}
+#lc-cover:hover{transform:scale(1.03);box-shadow:0 6px 22px rgba(0,0,0,.45)}
+#lc-cover img{width:100%;height:100%;object-fit:cover;display:block}
+.lc-meta{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;padding-top:2px}
+#lc-app{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:rgba(207,214,230,.72);text-transform:none}
+#lc-title{font-size:clamp(17px,2.6vw,27px);font-weight:800;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+#lc-artist{font-size:clamp(13px,1.9vw,17px);font-weight:500;color:rgba(201,210,232,.88);cursor:pointer}
+#lc-lab{font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:rgba(255,255,255,.42);margin-top:6px}
+#lc-line{font-size:clamp(19px,3.4vw,33px);font-weight:700;line-height:1.3;margin-top:6px;min-height:2.4em;word-break:break-word;text-shadow:0 2px 16px rgba(0,0,0,.45)}
+@keyframes lcpop{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+#lc-line.lc-pop{animation:lcpop .42s cubic-bezier(.22,.68,.31,1)}
+.lc-bottom{display:flex;align-items:center;gap:10px;margin-top:16px;font-family:var(--mono);font-size:11px;color:rgba(207,214,230,.9)}
+.lc-bar{flex:1;height:5px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden}
+.lc-bar i{display:block;height:100%;width:0%;background:var(--acid);border-radius:99px;transition:width .12s linear;box-shadow:0 0 10px rgba(212,255,63,.55)}
+#lc-tools .btn{background:rgba(10,10,10,.5);backdrop-filter:blur(6px)}
+/* ---- bawah air ---- */
+#stage.uw .lyric-layer,#stage.uw #fulltext-inner,#stage.uw .lc-box{filter:url(#uwfx)}
+#stage.uw #fulltext{animation:uwtide 7.2s ease-in-out infinite}
+#stage.uw .lc-wrap{animation:uwsay 7.6s ease-in-out infinite}
+#stage.uw .lyric-layer{animation:uwdrift 6.4s ease-in-out infinite}
+@keyframes uwtide{0%,100%{transform:translateY(2px)}50%{transform:translateY(-2px)}}
+@keyframes uwdrift{0%,100%{margin-top:2px}50%{margin-top:-2px}}
+@keyframes uwsay{0%{transform:translate3d(0,3px,0) rotate(-.45deg)}50%{transform:translate3d(0,-3px,0) rotate(.45deg)}100%{transform:translate3d(0,3px,0) rotate(-.45deg)}}
+@media (prefers-reduced-motion: reduce){
+  #stage.uw .lyric-layer,#stage.uw #fulltext,#stage.uw .lc-wrap{animation:none}
+  #stage.uw .lyric-layer,#stage.uw #fulltext-inner,#stage.uw .lc-box{filter:none}
+}
+@media (max-width:760px){
+  #mode-seg .chip{padding:5px 9px;font-size:9px}
+  #card-holder{padding:96px 10px 130px}
+  .lc-box{padding:18px 18px 14px}
+  .lc-top{gap:12px}
+  #lc-line{min-height:2.6em}
+}
 @media (max-width:760px){
   #topbar{flex-direction:column;align-items:flex-start;gap:8px}
   #topbar .row{flex-wrap:wrap}
@@ -273,11 +317,19 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true"><defs>
+<filter id="uwfx" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency="0.012 0.036" numOctaves="2" seed="7" result="nz">
+    <animate attributeName="baseFrequency" dur="11s" values="0.012 0.036;0.018 0.052;0.012 0.036" repeatCount="indefinite"/>
+  </feTurbulence>
+  <feDisplacementMap in="SourceGraphic" in2="nz" scale="9" xChannelSelector="R" yChannelSelector="G"/>
+</filter>
+</defs></svg>
 <div id="app">
 
 <!-- ==================== SETUP ==================== -->
 <section id="scr-setup" class="screen on">
-  <div class="setup-head">Lyric Player <span class="dim">v0.5.0 · vanilla rebuild</span></div>
+  <div class="setup-head">Lyric Player <span class="dim">v0.6.0 · B1 — 3 mode: Karaoke / Lyric / Lyric Card</span></div>
   <h1 class="setup-title">Masukin lagu &amp; lirik</h1>
   <div id="session-banner" class="session-banner" style="display:none">
     <div>
@@ -346,7 +398,11 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
     <div id="topbar">
       <div id="now-playing">Now Playing · <span class="acid" id="np-name"></span></div>
       <div class="row" style="gap:6px">
-        <button class="btn" id="btn-fulltext" title="Mode full text: semua baris tampil, highlight pindah ikut waktu">Full Text</button>
+        <div id="mode-seg" title="Mode tampilan lirik">
+          <button class="chip" data-mode="karaoke" title="Semua baris scroll + highlight pindah ikut waktu">🎤 Karaoke</button>
+          <button class="chip on" data-mode="lyric" title="Lirik per baris — default">📜 Lyric</button>
+          <button class="chip" data-mode="card" title="Card gede ala Apple Music — judul, artis, cover, detik & bar bisa di-cut">🎴 Lyric Card</button>
+        </div>
         <button class="btn" id="btn-lylist" title="Daftar lirik, klik buat lompat (D)">Daftar</button>
         <button class="btn" id="btn-editor" title="Edit teks & timing lirik (E)">Edit Lirik</button>
         <button class="btn" id="btn-settings" title="Style, efek, timing (S)">Settings</button>
@@ -365,6 +421,35 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
       <div class="lyric-layer" id="lyric-main" style="display:none"></div>
       <div id="lyric-out" style="display:none"></div>
       <div id="lyric-next" style="display:none"></div>
+      <div id="card-holder">
+        <div class="lc-wrap" id="lc-wrap">
+          <div class="lc-box" id="lc-box">
+            <div class="lc-top">
+              <div id="lc-cover" title="Klik buat ganti cover album"><span id="lc-cover-fb">&#9835;</span><img id="lc-cover-img" alt="" style="display:none" /></div>
+              <div class="lc-meta">
+                <div id="lc-app">Faptalyrics</div>
+                <div id="lc-title" title="Klik dua kali buat edit judul">Untitled</div>
+                <div id="lc-artist" title="Klik dua kali buat edit nama band / penyanyi">—</div>
+                <div id="lc-lab">Lyrics:</div>
+              </div>
+            </div>
+            <div id="lc-line">&nbsp;</div>
+            <div class="lc-bottom">
+              <span id="lc-t0">0:00</span>
+              <div class="lc-bar"><i id="lc-fill"></i></div>
+              <span id="lc-t1">0:00</span>
+            </div>
+          </div>
+          <div class="row" id="lc-tools" style="justify-content:center;gap:6px;margin-top:10px">
+            <button class="btn" id="lc-edit-title" title="Ganti tulisan judul">✏️ Judul</button>
+            <button class="btn" id="lc-edit-artist" title="Ganti nama band / penyanyi">✏️ Artis</button>
+            <button class="btn" id="lc-edit-app" title="Ganti tulisan kecil di atas judul (kredit)">🏷️ Kredit</button>
+            <button class="btn" id="lc-cover-pick" title="Pilih gambar cover">🖼️ Cover</button>
+            <button class="btn danger" id="lc-cover-clear" style="display:none" title="Hapus cover">🗑️</button>
+            <input type="file" id="lc-cover-input" hidden />
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="panel" id="lylist">
@@ -489,6 +574,56 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
           <div class="switch-row card">
             <div><div class="lbl" style="margin:0;color:var(--acid)">Zero Emoji</div><div class="switch-row sub">Hapus semua emoji dari lirik</div></div>
             <button class="toggle" id="ef-zeroEmoji"></button>
+          </div>
+          <div class="switch-row card">
+            <div><div class="lbl" style="margin:0;color:var(--acid)">💧 Efek Bawah Air</div><div class="switch-row sub">Teks / card kayak keliatan dari bawah air yang lagi ngalir — riak + goyang pelan. Auto ikut di render video export juga.</div></div>
+            <button class="toggle" id="ef-underwater"></button>
+          </div>
+          <div class="card">
+            <div class="card-title">🎴 Lyric Card (mode card)</div>
+            <div class="hint" style="margin-bottom:8px">Card gede di atas background — foto / videonya tetep nampang penuh di belakang. Judul, artis, cover diedit langsung dari tombol di bawah card. Semua setelan ini juga dipakai pas export (pilih gaya "Card" / "Auto").</div>
+            <div class="row" style="gap:8px;align-items:center">
+              <span class="hint" style="width:40px">FONT</span>
+              <select class="field" id="cd-font" style="flex:1">
+                <option value="Fredoka">Fredoka —rounded, kayak di screenshot</option>
+                <option value="Baloo 2">Baloo 2 — bulat tebal</option>
+                <option value="Quicksand">Quicksand — bersih modern</option>
+                <option value="Comfortaa">Comfortaa — kotak membulat</option>
+                <option value="Nunito">Nunito — friendly</option>
+                <option value="Poppins">Poppins — geometric</option>
+                <option value="Righteous">Righteous — bold display</option>
+                <option value="Bungee">Bungee — tebal gede</option>
+                <option value="Bangers">Bangers — komik</option>
+                <option value="Space Grotesk">Space Grotesk — app default</option>
+              </select>
+            </div>
+            <div><label class="lbl">Ukuran card: <span id="v-cdscale"></span>%</label><input type="range" id="cd-scale" min="60" max="140" step="5" /></div>
+            <div><label class="lbl">Kelengkungan sudut: <span id="v-cdradius"></span>px</label><input type="range" id="cd-radius" min="6" max="40" step="2" /></div>
+            <div><label class="lbl">Kegelapan card: <span id="v-cdalpha"></span>%</label><input type="range" id="cd-alpha" min="20" max="98" step="2" /></div>
+            <div class="row" style="gap:12px">
+              <div style="flex:1"><label class="lbl">Warna teks card</label><input type="color" id="cd-color" style="width:100%" /></div>
+              <div style="flex:1"><label class="lbl">Warna dasar card</label><input type="color" id="cd-bgcolor" style="width:100%" /></div>
+            </div>
+            <hr class="sep" />
+            <div class="switch-row">
+              <div><div class="lbl" style="margin:0">✂️ Potong waktu (cut)</div><div class="switch-row sub">Contoh: lagu 0:00-1:00 di-cut 0:30-0:45 → detik card mulai dari 0:30 sampe 0:45, bar tetep ngisi 0%→100% tapi lebih cepet, audio auto stop di 0:45.</div></div>
+              <button class="toggle" id="cd-cut"></button>
+            </div>
+            <div id="cd-cut-opts" style="display:none" class="rows" >
+              <div class="row" style="gap:6px;align-items:center">
+                <span class="hint" style="width:40px">START</span>
+                <input type="number" class="field" id="cd-cs-m" min="0" step="1" placeholder="min" style="width:50px;text-align:center" /><span class="dim">:</span>
+                <input type="number" class="field" id="cd-cs-s" min="0" max="59" step="1" placeholder="sec" style="width:50px;text-align:center" />
+                <button class="chip" id="cd-cs-now" title="Isi pake waktu sekarang">⬅ detik ini</button>
+              </div>
+              <div class="row" style="gap:6px;align-items:center">
+                <span class="hint" style="width:40px">END</span>
+                <input type="number" class="field" id="cd-ce-m" min="0" step="1" placeholder="min" style="width:50px;text-align:center" /><span class="dim">:</span>
+                <input type="number" class="field" id="cd-ce-s" min="0" max="59" step="1" placeholder="sec" style="width:50px;text-align:center" />
+                <button class="chip" id="cd-ce-now" title="Isi pake waktu sekarang">detik ini ➡</button>
+              </div>
+              <div class="hint mono acid" id="cd-cut-info" style="min-height:14px"></div>
+            </div>
           </div>
           <div class="card">
             <div class="switch-row"><span class="lbl" style="margin:0;color:var(--acid)">Particles</span><button class="toggle" id="ef-particles"></button></div>
@@ -673,6 +808,15 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
             </div>
             <div><label class="lbl">Posisi teks</label><div class="row" style="gap:6px"><button class="chip" data-tpos="top">Atas</button><button class="chip" data-tpos="middle">Tengah</button><button class="chip" data-tpos="bottom">Bawah</button></div></div>
             <div>
+              <label class="lbl">Gaya layout</label>
+              <div class="row" style="gap:6px">
+                <button class="chip on" data-layout="auto" title="Ngikutin mode yang dipilih di player">Auto (mode player)</button>
+                <button class="chip" data-layout="line" title="Lirik doang, polos kayak dulu">📜 Line</button>
+                <button class="chip" data-layout="card" title="Card gede + cover + detik & bar">🎴 Card</button>
+              </div>
+              <div class="hint">Auto = kalo di player lagi mode 🎴 Lyric Card, video keluaran juga jadi card (font, cover, judul, artis, detik &amp; bar ikut cut). Line = gaya klasik. Efek bawah-air &amp; goyang ikut ke-render di video.</div>
+            </div>
+            <div>
               <label class="lbl">Watermark / kredit</label>
               <input class="field" id="ex-watermark" placeholder="@namakamu" />
               <div class="row" style="margin-top:6px;gap:6px">
@@ -803,7 +947,10 @@ const defaultEffects = { particles:false, particleCount:30, particleColor:"#d4ff
   gradientText:false, gradientColors:["#d4ff3f","#00ff88"],
   zeroEmoji:false, gapClear:5,
   waveform:false, waveformStyle:"bars", waveformHeight:90, waveformColor:"#d4ff3f",
-  fullText:false, fullTextTime:true };
+  fullText:false, fullTextTime:true, underwater:false };
+const defaultCard = { title:"", artist:"", appName:"Faptalyrics", font:"Fredoka",
+  scale:100, radius:22, bgAlpha:78, color:"#ffffff", bgColor:"#0c122a",
+  cut:{ enabled:false, start:0, end:0 } };
 
 function removeEmojis(text){
   return text.replace(/[\u{1F004}\u{1F0CF}\u{1F170}-\u{1F171}\u{1F17E}-\u{1F17F}\u{1F18E}\u{1F191}-\u{1F19A}\u{1F201}-\u{1F202}\u{1F21A}\u{1F22F}\u{1F232}-\u{1F23A}\u{1F250}-\u{1F251}\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]|[\u{1F900}-\u{1F9FF}]|[\u{1FA00}-\u{1FA6F}]|[\u{1FA70}-\u{1FAFF}]|[\u{231A}-\u{231B}]|[\u{2328}\u{23CF}]|[\u{23E9}-\u{23F3}]|[\u{23ED}-\u{23F2}]|[\u{23F8}-\u{23FA}]|[\u{25AA}-\u{25AB}]|[\u{25B6}]|[\u{25C0}]|[\u{25FB}-\u{25FE}]|[\u{203C}\u{2049}\u{2122}\u{2139}]|[\u{2194}-\u{2199}]|[\u{21A9}-\u{21AA}]|[\u{2614}-\u{2615}]|[\u{2648}-\u{2653}]|[\u{267F}]|[\u{2693}]|[\u{26A1}]|[\u{26AA}-\u{26AB}]|[\u{26BD}-\u{26BE}]|[\u{26C4}-\u{26C5}]|[\u{26CE}]|[\u{26D4}]|[\u{26EA}]|[\u{26F2}-\u{26F3}]|[\u{26F5}]|[\u{26FA}]|[\u{26FD}]|[\u{2702}]|[\u{2705}]|[\u{2708}-\u{270D}]|[\u{270F}]|[\u{2712}]|[\u{2714}]|[\u{2716}]|[\u{271D}]|[\u{2721}]|[\u{2728}]|[\u{2733}-\u{2734}]|[\u{2744}]|[\u{2747}]|[\u{274C}]|[\u{274E}]|[\u{2753}-\u{2755}]|[\u{2757}]|[\u{2763}-\u{2764}]|[\u{2795}-\u{2797}]|[\u{27A1}]|[\u{27B0}]|[\u{27BF}]|[\u{2934}-\u{2935}]|[\u{2B05}-\u{2B07}]|[\u{2B1B}-\u{2B1C}]|[\u{2B50}]|[\u{2B55}]|[\u{3030}]|[\u{303D}]|[\u{3297}]|[\u{3299}]|[\u{FE00}-\u{FE0F}]|[\u{200D}]|[\u{20E3}]|[\u{E0020}-\u{E007F}]/gu, "").trim();
@@ -1182,6 +1329,39 @@ function drawCoverImage(ctx, img, w, h){
   const dw = iw*scale, dh = ih*scale;
   ctx.drawImage(img, (w-dw)/2, (h-dh)/2, dw, dh);
 }
+function hexToRgba(hex, alpha){
+  let h = String(hex||"").trim();
+  const m = /^#?([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(h);
+  let r=12,g=18,b=42;
+  if (m){
+    let x = m[1];
+    if (x.length===3) x = x.split("").map(c=>c+c).join("");
+    r = parseInt(x.slice(0,2),16); g = parseInt(x.slice(2,4),16); b = parseInt(x.slice(4,6),16);
+  }
+  return `rgba(${r},${g},${b},${Math.max(0,Math.min(1,alpha))})`;
+}
+function rrPath(ctx,x,y,w,hh,r){
+  const rr = Math.max(0, Math.min(r, w/2, hh/2));
+  ctx.beginPath();
+  ctx.moveTo(x+rr,y);
+  ctx.arcTo(x+w,y,x+w,y+hh,rr);
+  ctx.arcTo(x+w,y+hh,x,y+hh,rr);
+  ctx.arcTo(x,y+hh,x,y,rr);
+  ctx.arcTo(x,y,x+w,y,rr);
+  ctx.closePath();
+}
+function drawCoverAt(ctx, img, x, y, w, h){
+  if (!img) return;
+  const iw = img.naturalWidth || img.videoWidth || img.width;
+  const ih = img.naturalHeight || img.videoHeight || img.height;
+  if (!iw || !ih) return;
+  const scale = Math.max(w/iw, h/ih);
+  const dw = iw*scale, dh = ih*scale;
+  ctx.save();
+  ctx.beginPath(); ctx.rect(x,y,w,h); ctx.clip();
+  ctx.drawImage(img, x+(w-dw)/2, y+(h-dh)/2, dw, dh);
+  ctx.restore();
+}
 function wrapLines(ctx, text, maxWidth){
   const paragraphs = String(text==null?"":text).split("\n");
   const out = [];
@@ -1226,7 +1406,8 @@ const S = {
   bgFile: null,
   audioFile: null, mp4File: null, lyrics: [], tapLines: [],
   style: { ...defaultStyle }, effects: { ...defaultEffects },
-  offset: 0, anim: { animEnabled:true, animType:"fade", animSpeed:300 }
+  offset: 0, anim: { animEnabled:true, animType:"fade", animSpeed:300 },
+  mode: "lyric", card: { ...defaultCard, cut: { ...defaultCard.cut } }, cardCover: null
 };
 function show(name){
   S.screen = name;
@@ -1519,7 +1700,8 @@ const player = (() => {
     const st = $("lyric-stage");
     st.style.backgroundColor = S.style.bgColor;
     paintFullText();
-    if (S.effects.fullText){
+    paintCard();
+    if (S.effects.fullText || S.mode==="card"){
       main.style.display = "none";
       out.style.display = "none"; clearTimeout(triggerOut._t || 0);
       next.style.display = "none";
@@ -1543,7 +1725,7 @@ const player = (() => {
     }
   }
   function triggerOut(idxPrev){
-    if (!S.anim.animEnabled || S.effects.fullText || idxPrev < 0 || idxPrev === currentIndex) return;
+    if (!S.anim.animEnabled || S.effects.fullText || S.mode==="card" || idxPrev < 0 || idxPrev === currentIndex) return;
     const out = $("lyric-out");
     const txt = displayText(S.lyrics[idxPrev] ? S.lyrics[idxPrev].text : "", true);
     if (!txt) return;
@@ -1553,6 +1735,83 @@ const player = (() => {
     out.style.display = "block";
     clearTimeout(triggerOut._t);
     triggerOut._t = setTimeout(()=>{ out.style.display="none"; }, Math.min(S.anim.animSpeed,300)+40);
+  }
+
+  /* ---- lyric card (mode 🎴) ---- */
+  let cardCoverUrl = null;
+  function cardFontStack(){
+    const f = S.card.font || "";
+    return f ? `"${f}","Baloo 2","Fredoka","Space Grotesk",system-ui,sans-serif` : "inherit";
+  }
+  function setMode(m){
+    if (m!=="lyric" && m!=="karaoke" && m!=="card") m = "lyric";
+    const changed = S.mode!==m;
+    S.mode = m;
+    S.effects.fullText = (m==="karaoke");
+    afterSettings();
+    settingsSyncAll();
+    renderLyric(true);
+    if (changed) notify(m==="card" ? "🎴 Lyric Card — edit judul / artis / cover dari tombol di bawah card"
+      : m==="karaoke" ? "🎤 Karaoke — semua baris, scroll halus ikut waktu"
+      : "📜 Lyric — mode default per baris");
+    markDirty();
+  }
+  function paintCardTime(){
+    const t = (media ? media.currentTime : 0) + S.offset/1000;
+    const dd = duration>0 ? duration : (media && isFinite(media.duration) && media.duration>0 ? media.duration : (realDur||0));
+    let cs = 0, ce = dd;
+    if (S.card.cut.enabled){
+      cs = S.card.cut.start||0;
+      const e0 = S.card.cut.end||0;
+      ce = e0>cs ? e0 : dd;
+    }
+    if (!(ce>cs)) ce = Math.max(ce, cs+0.1);
+    const tt = Math.max(cs, Math.min(ce, t));
+    $("lc-t0").textContent = formatTime(tt);
+    $("lc-t1").textContent = formatTime(ce);
+    $("lc-fill").style.width = (clamp01((tt-cs)/Math.max(0.01,ce-cs))*100).toFixed(2)+"%";
+  }
+  function paintCard(){
+    const hold = $("card-holder");
+    if (!hold) return;
+    const isCard = S.mode==="card";
+    hold.style.display = isCard ? "flex" : "none";
+    if (!isCard) return;
+    const cd = S.card, wrap = $("lc-wrap"), box = $("lc-box");
+    wrap.style.zoom = String((cd.scale||100)/100);
+    box.style.borderRadius = (typeof cd.radius==="number"?cd.radius:22)+"px";
+    box.style.background = hexToRgba(cd.bgColor, (typeof cd.bgAlpha==="number"?cd.bgAlpha:78)/100);
+    box.style.fontFamily = cardFontStack();
+    const ln = $("lc-line");
+    ln.style.color = cd.color||"#ffffff";
+    $("lc-app").textContent = cd.appName||"";
+    $("lc-app").style.display = cd.appName ? "block" : "none";
+    $("lc-title").textContent = cd.title || (S.audioFile ? S.audioFile.name.replace(/\.[^.]+$/,"") : "Untitled");
+    $("lc-artist").textContent = cd.artist || "—";
+    const vi = visibleIdx();
+    const txt = vi>=0 ? displayText(S.lyrics[vi].text, true) : "";
+    const key = String(vi)+"|"+txt+"|"+animKey;
+    if (ln.dataset.k !== key){
+      ln.dataset.k = key;
+      ln.textContent = txt || "\u00A0";
+      if (txt){ ln.classList.remove("lc-pop"); void ln.offsetWidth; ln.classList.add("lc-pop"); }
+    }
+    paintCardTime();
+  }
+  function editCardTitle(){ const v = prompt("Judul lagu di card (kosongin = pake nama file):", S.card.title||""); if (v!==null){ S.card.title = v.trim(); paintCard(); markDirty(); } }
+  function editCardArtist(){ const v = prompt("Nama band / penyanyi di card:", S.card.artist||""); if (v!==null){ S.card.artist = v.trim(); paintCard(); markDirty(); } }
+  function editCardApp(){ const v = prompt("Kredit kecil di atas judul (kosongin = sembunyi):", S.card.appName||""); if (v!==null){ S.card.appName = v.trim(); paintCard(); markDirty(); } }
+  function setCardCover(file){
+    if (cardCoverUrl){ try{ URL.revokeObjectURL(cardCoverUrl); }catch(err){} cardCoverUrl = null; }
+    S.cardCover = file || null;
+    const im = $("lc-cover-img"), fb = $("lc-cover-fb"), cl = $("lc-cover-clear");
+    if (file){
+      cardCoverUrl = URL.createObjectURL(file);
+      im.src = cardCoverUrl; im.style.display = "block"; fb.style.display = "none"; cl.style.display = "";
+    } else {
+      im.removeAttribute("src"); im.style.display = "none"; fb.style.display = ""; cl.style.display = "none";
+    }
+    paintCard();
   }
 
   /* ---- full text ---- */
@@ -1758,6 +2017,25 @@ const player = (() => {
         return;
       }
     }
+    if (S.card.cut.enabled){
+      const cs = S.card.cut.start||0; const ce0 = S.card.cut.end||0;
+      const de = ce0>cs ? ce0 : (duration>0 ? duration : (realDur||0));
+      if (de>cs){
+        if (media.currentTime >= de - 0.02){
+          try{ media.pause(); }catch(err){}
+          setPlaying(false);
+          try{ media.currentTime = de; }catch(err){}
+          setCurrentTime(de); paintCardTime(); paintTransport();
+          return;
+        }
+        if (media.currentTime < cs - 0.25){
+          try{ media.currentTime = cs; }catch(err){}
+          setCurrentTime(cs); paintCardTime(); paintTransport();
+          return;
+        }
+      }
+    }
+    if (S.mode==="card") paintCardTime();
     setCurrentTime(media.currentTime);
     const d = media.duration;
     if (typeof d==="number" && isFinite(d) && d>0 && d>=realDur){ realDur = d; duration = d; }
@@ -1833,7 +2111,8 @@ const player = (() => {
       if (!S.lyrics.length) return;
       saveSession({ audioName: S.audioFile?.name || "", mp4Name: S.mp4File?.name || "",
         lyrics: S.lyrics, offset: S.offset, style: S.style, effects: S.effects,
-        animType: S.anim.animType, animSpeed: S.anim.animSpeed, animEnabled: S.anim.animEnabled });
+        animType: S.anim.animType, animSpeed: S.anim.animSpeed, animEnabled: S.anim.animEnabled,
+        mode: S.mode, card: S.card });
     }, 800);
   }
 
@@ -1856,7 +2135,8 @@ const player = (() => {
         audio:{ name:S.audioFile.name, data:audioData },
         mp4: mp4Data && S.mp4File ? { name:S.mp4File.name, data:mp4Data } : null,
         lyrics:S.lyrics, offset:S.offset, style:S.style, effects:S.effects,
-        animType:S.anim.animType, animSpeed:S.anim.animSpeed, animEnabled:S.anim.animEnabled };
+        animType:S.anim.animType, animSpeed:S.anim.animSpeed, animEnabled:S.anim.animEnabled,
+        mode:S.mode, card:S.card };
       const blob = new Blob([JSON.stringify(project)], { type:"application/json" });
       const a = document.createElement("a");
       a.href = URL.createObjectURL(blob);
@@ -1878,9 +2158,12 @@ const player = (() => {
         if (typeof data.offset === "number") S.offset = data.offset;
         if (data.style) S.style = { ...S.style, ...data.style };
         if (data.effects) S.effects = { ...S.effects, ...data.effects };
+        if (typeof data.mode!=="string") S.mode = S.effects.fullText ? "karaoke" : "lyric";
         if (typeof data.animType==="string") S.anim.animType = data.animType;
         if (typeof data.animSpeed==="number") S.anim.animSpeed = data.animSpeed;
         if (typeof data.animEnabled==="boolean") S.anim.animEnabled = data.animEnabled;
+        if (data.mode==="lyric"||data.mode==="karaoke"||data.mode==="card"){ S.mode = data.mode; S.effects.fullText = (data.mode==="karaoke"); }
+        if (data.card) S.card = { ...S.card, ...data.card, cut: { ...S.card.cut, ...(data.card.cut||{}) } };
         S.audioFile = audioF; S.mp4File = mp4F || null;
         S.lyrics = data.lyrics;
         ftDirty++;
@@ -1988,7 +2271,7 @@ const player = (() => {
       else if (e.key === "e" || e.key === "E"){ showEditor ? editorClose() : editorOpen(); }
       else if (e.key === "s" || e.key === "S"){ $("settings").classList.toggle("on"); }
       else if (e.key === "d" || e.key === "D"){ toggleLyList(); }
-      else if (e.key === "t" || e.key === "T"){ S.effects.fullText = !S.effects.fullText; settingsSyncAll(); renderLyric(true); markDirty(); }
+      else if (e.key === "t" || e.key === "T"){ setMode(S.mode==="karaoke"?"lyric":"karaoke"); }
       else if (e.key === "["){ setRate(-0.25); }
       else if (e.key === "]"){ setRate(0.25); }
       else if (e.key === "0"){ if (media) media.currentTime = 0; }
@@ -2044,6 +2327,7 @@ const player = (() => {
     st(id).addEventListener("click", () => { set(!get()); settingsSyncAll(); afterSettings(); markDirty(); });
   }
   function afterSettings(){
+    $("stage").classList.toggle("uw", !!S.effects.underwater);
     if (S.effects.fullText) ftStartLoop(); else ftStopLoop();
     renderLyric(true);
     if (S.effects.particles) particlesLoop(); else stopParticles();
@@ -2091,7 +2375,22 @@ const player = (() => {
     $("ef-fullText").classList.toggle("on", e.fullText);
     $("ef-fullTextTime").classList.toggle("on", e.fullTextTime);
     $("ef-zeroEmoji").classList.toggle("on", e.zeroEmoji);
-    $("btn-fulltext").classList.toggle("solid", e.fullText);
+    for (const b of $$("[data-mode]")) b.classList.toggle("on", b.dataset.mode===S.mode);
+    $("ef-underwater").classList.toggle("on", !!e.underwater);
+    const cdS = S.card;
+    st("cd-font").value = cdS.font;
+    st("cd-scale").value = cdS.scale; $("v-cdscale").textContent = cdS.scale;
+    st("cd-radius").value = cdS.radius; $("v-cdradius").textContent = cdS.radius;
+    st("cd-alpha").value = cdS.bgAlpha; $("v-cdalpha").textContent = cdS.bgAlpha;
+    st("cd-color").value = cdS.color;
+    st("cd-bgcolor").value = cdS.bgColor;
+    $("cd-cut").classList.toggle("on", !!cdS.cut.enabled);
+    $("cd-cut-opts").style.display = cdS.cut.enabled ? "flex" : "none";
+    const dD = duration>0 ? duration : (realDur||0);
+    const cS = cdS.cut.start||0; let cE = cdS.cut.end||0; if (!(cE>cS)) cE = dD;
+    st("cd-cs-m").value = Math.floor(cS/60); st("cd-cs-s").value = Math.floor(cS%60);
+    st("cd-ce-m").value = Math.floor(cE/60); st("cd-ce-s").value = Math.floor(cE%60);
+    $("cd-cut-info").textContent = cdS.cut.enabled && cE>cS ? `Main ${formatTime(cS)} → ${formatTime(cE)} · durasi ${formatTime(Math.max(0,cE-cS))} · audio auto-stop di ${formatTime(cE)}` : "";
     $("ef-particles").classList.toggle("on", e.particles);
     $("ef-part-opts").style.display = e.particles ? "flex" : "none";
     st("ef-particleCount").value = e.particleCount; $("v-pcount").textContent = e.particleCount;
@@ -2147,7 +2446,7 @@ const player = (() => {
     st("ef-waveformStyle").addEventListener("change", (ev)=>{ S.effects.waveformStyle=ev.target.value; if(S.effects.waveform) waveformLoop(); markDirty(); });
     st("ef-waveformHeight").addEventListener("input", (ev)=>{ S.effects.waveformHeight=+ev.target.value; $("wave-canvas").style.height=S.effects.waveformHeight+"px"; $("v-waveh").textContent=S.effects.waveformHeight; markDirty(); });
     st("ef-waveformColor").addEventListener("input", (ev)=>{ S.effects.waveformColor=ev.target.value; markDirty(); });
-    bindToggle("ef-fullText", ()=>S.effects.fullText, v=>S.effects.fullText=v);
+    $("ef-fullText").addEventListener("click", ()=> setMode(S.mode==="karaoke"?"lyric":"karaoke"));
     bindToggle("ef-fullTextTime", ()=>S.effects.fullTextTime, v=>S.effects.fullTextTime=v);
     bindToggle("ef-zeroEmoji", ()=>S.effects.zeroEmoji, v=>S.effects.zeroEmoji=v);
     bindToggle("ef-particles", ()=>S.effects.particles, v=>S.effects.particles=v);
@@ -2163,7 +2462,43 @@ const player = (() => {
     $("ti-reset").addEventListener("click", ()=>{ S.offset=0; settingsSyncAll(); set2(); paintMarks(); markDirty(); });
     bindToggle("ti-showNext", ()=>showNext, v=>showNext=v);
     $("btn-settings").addEventListener("click", ()=>{ $("settings").classList.toggle("on"); $("btn-settings").classList.toggle("solid", $("settings").classList.contains("on")); });
-    $("btn-fulltext").addEventListener("click", ()=>{ S.effects.fullText=!S.effects.fullText; settingsSyncAll(); afterSettings(); markDirty(); });
+    for (const b of $$("[data-mode]")) b.addEventListener("click", ()=> setMode(b.dataset.mode));
+    for (const op of $$("select#cd-font option")){ if (op.value) op.style.fontFamily = `"${op.value}", sans-serif`; }
+    $("ef-underwater").addEventListener("click", ()=>{ S.effects.underwater = !S.effects.underwater; $("stage").classList.toggle("uw", !!S.effects.underwater); settingsSyncAll(); markDirty(); });
+    st("cd-font").addEventListener("change", (ev)=>{ S.card.font = ev.target.value; settingsSyncAll(); paintCard(); markDirty(); });
+    [["cd-scale","scale"],["cd-radius","radius"],["cd-alpha","bgAlpha"]].forEach(pair=>{
+      st(pair[0]).addEventListener("input", (ev)=>{ S.card[pair[1]] = +ev.target.value; settingsSyncAll(); paintCard(); markDirty(); });
+    });
+    $("cd-color").addEventListener("input", (ev)=>{ S.card.color = ev.target.value; paintCard(); markDirty(); });
+    $("cd-bgcolor").addEventListener("input", (ev)=>{ S.card.bgColor = ev.target.value; paintCard(); markDirty(); });
+    $("cd-cut").addEventListener("click", ()=>{
+      S.card.cut.enabled = !S.card.cut.enabled;
+      if (S.card.cut.enabled){
+        const dd = duration>0 ? duration : (realDur||0);
+        const cs2=S.card.cut.start||0, ce2=S.card.cut.end||0;
+        if (!(ce2>cs2)){ S.card.cut.start = 0; S.card.cut.end = dd||0; }
+      }
+      settingsSyncAll(); renderLyric(true); markDirty();
+    });
+    const readCut = () => {
+      const cs2 = Math.max(0,(+st("cd-cs-m").value||0)*60 + Math.min(59, Math.max(0, +st("cd-cs-s").value||0)));
+      const ce2 = Math.max(0,(+st("cd-ce-m").value||0)*60 + Math.min(59, Math.max(0, +st("cd-ce-s").value||0)));
+      if (ce2>cs2){ S.card.cut.start = cs2; S.card.cut.end = ce2; }
+      settingsSyncAll(); renderLyric(true); markDirty();
+    };
+    ["cd-cs-m","cd-cs-s","cd-ce-m","cd-ce-s"].forEach(id=> st(id).addEventListener("change", readCut));
+    $("cd-cs-now").addEventListener("click", ()=>{ const t = media?media.currentTime:0; st("cd-cs-m").value = Math.floor(t/60); st("cd-cs-s").value = Math.floor(t%60); readCut(); });
+    $("cd-ce-now").addEventListener("click", ()=>{ const t = media?media.currentTime:0; st("cd-ce-m").value = Math.floor(t/60); st("cd-ce-s").value = Math.floor(t%60); readCut(); });
+    $("lc-edit-title").addEventListener("click", editCardTitle);
+    $("lc-edit-artist").addEventListener("click", editCardArtist);
+    $("lc-edit-app").addEventListener("click", editCardApp);
+    $("lc-title").addEventListener("dblclick", editCardTitle);
+    $("lc-artist").addEventListener("dblclick", editCardArtist);
+    $("lc-app").addEventListener("dblclick", editCardApp);
+    $("lc-cover").addEventListener("click", ()=> $("lc-cover-input").click());
+    $("lc-cover-pick").addEventListener("click", ()=> $("lc-cover-input").click());
+    $("lc-cover-input").addEventListener("change", (ev)=>{ const f = ev.target.files && ev.target.files[0]; ev.target.value=""; if (f) setCardCover(f); });
+    $("lc-cover-clear").addEventListener("click", ()=> setCardCover(null));
     // background photo/video
     $("st-bg-pick").addEventListener("click", (ev)=>{ ev.preventDefault(); st("st-bg-input").click(); });
     st("st-bg-input").addEventListener("change", (ev)=>{ onPickBgMedia(ev.target.files && ev.target.files[0]); ev.target.value=""; });
@@ -2360,7 +2695,7 @@ const player = (() => {
     $("tp-load").addEventListener("click", ()=>$("tp-load-input").click());
     $("tp-load-input").addEventListener("change", (ev)=>{ if (ev.target.files && ev.target.files[0]) loadProject(ev.target.files[0]); ev.target.value=""; });
     $("tp-export").addEventListener("click", ()=>{
-      exporter.enter({ style:{...S.style}, effects:{...S.effects}, offset:S.offset, anim:{...S.anim} });
+      exporter.enter({ style:{...S.style}, effects:{...S.effects}, offset:S.offset, anim:{...S.anim}, mode:S.mode, card:{ ...S.card, cut:{ ...S.card.cut } } });
     });
     $("btn-back").addEventListener("click", ()=>leave(true));
     $("btn-lylist").addEventListener("click", toggleLyList);
@@ -2374,20 +2709,26 @@ const player = (() => {
       if (s && S.audioFile && s.audioName && s.audioName === S.audioFile.name){
         if (s.style) S.style = { ...S.style, ...s.style };
         if (s.effects) S.effects = { ...S.effects, ...s.effects };
+        if (typeof s.mode!=="string") S.mode = S.effects.fullText ? "karaoke" : "lyric";
         if (typeof s.offset==="number") S.offset = s.offset;
         if (typeof s.animType==="string") S.anim.animType = s.animType;
         if (typeof s.animSpeed==="number") S.anim.animSpeed = s.anim.animSpeed;
         if (typeof s.animEnabled==="boolean") S.anim.animEnabled = s.animEnabled;
+        if (s.mode==="lyric"||s.mode==="karaoke"||s.mode==="card"){ S.mode = s.mode; S.effects.fullText = (s.mode==="karaoke"); }
+        if (s.card) S.card = { ...S.card, ...s.card, cut: { ...S.card.cut, ...(s.card.cut||{}) } };
       }
     } else {
       const s = loadSession();
       if (s && S.audioFile && s.audioName && s.audioName === S.audioFile.name){
         if (s.style) S.style = { ...S.style, ...s.style };
         if (s.effects) S.effects = { ...S.effects, ...s.effects };
+        if (typeof s.mode!=="string") S.mode = S.effects.fullText ? "karaoke" : "lyric";
         if (typeof s.offset==="number") S.offset = s.offset;
         if (typeof s.animType==="string") S.anim.animType = s.animType;
         if (typeof s.animSpeed==="number") S.anim.animSpeed = s.anim.animSpeed;
         if (typeof s.animEnabled==="boolean") S.anim.animEnabled = s.anim.animEnabled;
+        if (s.mode==="lyric"||s.mode==="karaoke"||s.mode==="card"){ S.mode = s.mode; S.effects.fullText = (s.mode==="karaoke"); }
+        if (s.card) S.card = { ...S.card, ...s.card, cut: { ...S.card.cut, ...(s.card.cut||{}) } };
       }
     }
     show("player");
@@ -2405,6 +2746,15 @@ const player = (() => {
       if (kind==="video") n.playsInline = true;
       n.addEventListener("timeupdate", onTimeUpdate);
       n.addEventListener("ended", ()=>setPlaying(false));
+      n.addEventListener("play", ()=>{
+        if (!S.card.cut.enabled) return;
+        const cs = S.card.cut.start||0; const ce0 = S.card.cut.end||0;
+        const de = ce0>cs ? ce0 : (duration>0 ? duration : (isFinite(media.duration) && media.duration>0 ? media.duration : 0));
+        if (de>cs && media.currentTime >= de - 0.05){
+          try{ media.currentTime = cs; }catch(err){}
+          setCurrentTime(cs);
+        }
+      });
       $("media-wrap").appendChild(n);
       media = n;
       media.volume = volume;
@@ -2443,9 +2793,11 @@ const player = (() => {
       if (kind!=="video") $("ref-box").classList.remove("on");
       clearInterval(refSyncTimer);
     }
+    if (S.mode!=="card") S.effects.fullText = (S.mode==="karaoke");
     settingsSyncAll();
     applyAnimSpeed();
     afterSettings();
+    $("stage").classList.toggle("uw", !!S.effects.underwater);
     ftLastIdx = -2;
     paintMarks();
     paintLoop();
@@ -2470,7 +2822,7 @@ const player = (() => {
     setup.updateSessionBanner();
   }
   function boot(){ wireScrub(); wireKeys(); wireTransport(); wireSettings(); wireEditor(); }
-  return { enter, leave, notify, settingsSyncAll, boot };
+  return { enter, leave, notify, settingsSyncAll, boot, setMode, paintCard, setCardCover, paintCardTime };
 })();
 
 /* ================= EXPORT ================= */
@@ -2488,10 +2840,23 @@ const exporterImpl = (() => {
     showProgressBar:true, textBand:false, bandOpacity:55,
     fadeInOut:false, fadeDur:1,
     animEnabled:true, animType:"fade", animSpeed:300,
+    layout:"auto", mode:"lyric", uw:false, card:{ ...defaultCard, cut:{ ...defaultCard.cut } },
     fileNameTpl:"{nama}_subtitle",
     status:"idle", progress:0, audioDuration:0
   };
   let bgImg = null, bgVid = null, bgObjUrl = null, particlesArr = [], previewRaf = 0;
+  let coverImg = null, coverObjUrl = null;
+  function setExportCover(file){
+    if (coverObjUrl){ try{ URL.revokeObjectURL(coverObjUrl); }catch(err){} coverObjUrl = null; }
+    coverImg = null;
+    if (file){
+      coverObjUrl = URL.createObjectURL(file);
+      const im = new Image();
+      im.onload = ()=>{ try{ startPreviewLoop(); }catch(err){} };
+      im.src = coverObjUrl;
+      coverImg = im;
+    }
+  }
   let audioDurationProbe = 0, recRaf = 0, recorder = null, recAudio = null, recAudioUrl = null, recCtx = null;
   let exportDurationRef = 0, recordStartedAt = 0;
   let downloadUrl = null, downloadExt = "mp4", finalSize = 0, finalDurStr = "";
@@ -2505,6 +2870,95 @@ const exporterImpl = (() => {
     if (isItalic) f += "italic ";
     if (isBold) f += "bold ";
     return f + `${size}px "${family}", "Segoe UI", "Arial", sans-serif`;
+  }
+  function drawLyricCard(ctx, w, h, t, idx, scale, uwOn, totalDuration){
+    const cd = P.card || {};
+    const cw = Math.round(Math.min(w*0.88, h*1.55*0.66*((cd.scale||100)/100)));
+    const pd = Math.round(cw*0.05);
+    const cov = Math.round(cw*0.19);
+    const chh = pd*2 + cov + Math.round(cw*0.31) + Math.round(cw*0.09);
+    const x0 = Math.round((w-cw)/2), y0 = Math.round((h-chh)/2 - h*0.015);
+    ctx.save();
+    if (uwOn){ ctx.translate(Math.sin(t*0.9)*6*scale, Math.cos(t*0.7)*5*scale); ctx.rotate(Math.sin(t*0.5)*0.005); }
+    ctx.shadowColor = "rgba(0,0,0,.55)"; ctx.shadowBlur = 44*scale; ctx.shadowOffsetY = 10*scale;
+    ctx.fillStyle = hexToRgba(cd.bgColor||"#0c122a", ((typeof cd.bgAlpha==="number"?cd.bgAlpha:78)/100));
+    rrPath(ctx, x0, y0, cw, chh, (cd.radius||22)*scale);
+    ctx.fill();
+    ctx.shadowColor = "transparent"; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+    ctx.strokeStyle = "rgba(255,255,255,.15)"; ctx.lineWidth = 1.5*scale; ctx.stroke();
+    const fam = cd.font ? `"${cd.font}","Baloo 2","Fredoka","Space Grotesk",sans-serif` : `"Space Grotesk",sans-serif`;
+    const cx0 = x0+pd, cy0 = y0+pd;
+    if (coverImg && coverImg.complete && (coverImg.naturalWidth>0)){
+      ctx.save();
+      rrPath(ctx,cx0,cy0,cov,cov,Math.max(6,cov*0.1)); ctx.clip();
+      drawCoverAt(ctx, coverImg, cx0, cy0, cov, cov);
+      ctx.restore();
+    } else {
+      const g = ctx.createLinearGradient(cx0,cy0,cx0+cov,cy0+cov);
+      g.addColorStop(0,"#232c4e"); g.addColorStop(1,"#0a0f1e");
+      ctx.fillStyle = g; rrPath(ctx,cx0,cy0,cov,cov,Math.max(6,cov*0.1)); ctx.fill();
+      ctx.fillStyle = "rgba(255,255,255,.45)"; ctx.textAlign="center"; ctx.textBaseline="middle";
+      ctx.font = `${Math.round(cov*0.36)}px serif`;
+      ctx.fillText("♪", cx0+cov/2, cy0+cov/2+1);
+    }
+    const mx = cx0+cov+pd*0.95, avail = x0+cw-pd-mx;
+    ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+    let ty = cy0 + cov*0.13;
+    if (cd.appName && String(cd.appName).trim()){
+      ctx.font = `500 ${Math.max(10,Math.round(cov*0.105))}px "IBM Plex Mono", monospace`;
+      ctx.fillStyle = "rgba(207,214,230,.8)";
+      ctx.fillText(String(cd.appName), mx, ty);
+    }
+    ty += cov*0.26;
+    const ttl = (cd.title && String(cd.title).trim()) || (S.audioFile ? S.audioFile.name.replace(/\.[^.]+$/,"") : "Untitled");
+    ctx.font = `800 ${Math.round(cov*0.225)}px ${fam}`; ctx.fillStyle = "#ffffff";
+    const tLines = wrapLines(ctx, ttl, avail).slice(0,2);
+    tLines.forEach((ln,i)=>ctx.fillText(ln, mx, ty + i*cov*0.25));
+    ty += Math.max(1,tLines.length)*cov*0.25 + cov*0.06;
+    ctx.font = `500 ${Math.round(cov*0.15)}px ${fam}`; ctx.fillStyle = "rgba(201,210,232,.92)";
+    ctx.fillText(cd.artist && String(cd.artist).trim() ? String(cd.artist) : "—", mx, ty);
+    ty += cov*0.19;
+    ctx.font = `500 ${Math.max(9,Math.round(cov*0.09))}px "IBM Plex Mono", monospace`; ctx.fillStyle = "rgba(255,255,255,.45)";
+    ctx.fillText("Lyrics:", mx, ty);
+    const lyy = cy0 + cov + cw*0.05;
+    const fsL = Math.round(cw*0.062);
+    ctx.font = `700 ${fsL}px ${fam}`; ctx.fillStyle = cd.color||"#ffffff";
+    ctx.shadowColor = "rgba(0,0,0,.5)"; ctx.shadowBlur = 16*scale; ctx.shadowOffsetY = 2*scale;
+    let txt = idx>=0 ? String((S.lyrics[idx] && S.lyrics[idx].text) || "") : "";
+    if (P.zeroEmoji && idx>=0) txt = removeEmojis(txt);
+    if (P.uppercase) txt = txt.toUpperCase();
+    const lns = txt ? wrapLines(ctx, txt, cw - pd*2) : [];
+    const lh2 = Math.round(fsL*1.3);
+    const shown = lns.slice(0,3);
+    shown.forEach((ln,i)=>{
+      const wob = uwOn ? Math.sin(t*1.8 + i*0.95)*2.6*scale : 0;
+      ctx.fillText(ln, x0+pd, lyy + i*lh2 + wob);
+    });
+    ctx.shadowColor = "transparent"; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
+    const byY = y0 + chh - pd - cw*0.012;
+    const s0 = P.clipEnabled ? (P.clipStart||0) : 0;
+    let e0 = (P.clipEnabled && P.clipEnd>P.clipStart) ? P.clipEnd : (totalDuration>0 ? totalDuration : (P.audioDuration||0));
+    if (!(e0>s0)) e0 = Math.max(e0, s0+0.1);
+    const tt = Math.max(s0, Math.min(e0, t));
+    const pct = Math.max(0, Math.min(1, (tt - s0)/Math.max(0.01, e0-s0)));
+    const mFs = Math.max(10, Math.round(cw*0.024));
+    ctx.font = `500 ${mFs}px "IBM Plex Mono", monospace`;
+    ctx.fillStyle = "rgba(207,214,230,.9)"; ctx.textBaseline = "middle";
+    ctx.textAlign = "left";
+    ctx.fillText(formatTime(tt), x0+pd, byY);
+    ctx.textAlign = "right";
+    ctx.fillText(formatTime(e0), x0+cw-pd, byY);
+    const mW = ctx.measureText(formatTime(e0)).width;
+    const tx0 = x0+pd + mW + cw*0.03, tx1 = x0+cw-pd - mW - cw*0.03;
+    const tw2 = Math.max(10, tx1-tx0), th2 = Math.max(3, cw*0.0075);
+    ctx.fillStyle = "rgba(255,255,255,.22)";
+    rrPath(ctx, tx0, byY - th2/2, tw2, th2, th2/2); ctx.fill();
+    if (pct>0.002){
+      ctx.fillStyle = "#d4ff3f";
+      rrPath(ctx, tx0, byY - th2/2, Math.max(th2, tw2*pct), th2, th2/2); ctx.fill();
+    }
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.restore();
   }
   function drawFrame(ctx, currentTime, w, h, totalDuration){
     ctx.fillStyle = P.bgColor;
@@ -2527,6 +2981,12 @@ const exporterImpl = (() => {
     const adjustedT = currentTime + S.offset/1000;
     let idx = getCurrentLyricIndex(S.lyrics, adjustedT);
     if (idx >= 0 && P.gapClear > 0 && adjustedT > lyricVisibleUntil(S.lyrics, idx, P.gapClear)) idx = -1;
+    const useCard = P.layout==="card" || (P.layout==="auto" && P.mode==="card");
+    const uwOn = !!P.uw;
+    if (useCard){
+      drawLyricCard(ctx, w, h, adjustedT, idx, scale, uwOn, totalDuration);
+    } else {
+    if (uwOn){ ctx.save(); ctx.translate(Math.sin(adjustedT*1.1)*4*scale, Math.cos(adjustedT*0.8)*3*scale); ctx.rotate(Math.sin(adjustedT*0.6)*0.004); }
     const fs = Math.round(P.fontSize * scale);
     if (P.glow){ ctx.shadowColor = P.glowColor; ctx.shadowBlur = P.glowIntensity*scale; ctx.shadowOffsetY = 0; }
     else { ctx.shadowColor = "rgba(0,0,0,0.8)"; ctx.shadowBlur = 10*scale; ctx.shadowOffsetY = 3*scale; }
@@ -2536,20 +2996,21 @@ const exporterImpl = (() => {
     try { ctx.letterSpacing = `${P.letterSpacing*scale}px`; } catch(err){}
     const anchorY = P.textPos==="top" ? h*0.22 : P.textPos==="bottom" ? h*0.78 : h/2;
     const drawStyledLines = (linesArr, baseY, lineHeight) => {
+      const lineY = (i) => baseY + i*lineHeight + (uwOn ? Math.sin(adjustedT*1.7 + i*0.9)*2.6*scale : 0);
       if (P.outline){
         ctx.strokeStyle = P.outlineColor;
         ctx.lineWidth = P.outlineWidth*scale;
         ctx.lineJoin = "round";
-        linesArr.forEach((ln,i)=>ctx.strokeText(ln, w/2, baseY+i*lineHeight));
+        linesArr.forEach((ln,i)=>ctx.strokeText(ln, w/2, lineY(i)));
       }
       ctx.fillStyle = P.fontColor;
-      linesArr.forEach((ln,i)=>ctx.fillText(ln, w/2, baseY+i*lineHeight));
+      linesArr.forEach((ln,i)=>ctx.fillText(ln, w/2, lineY(i)));
       if (P.underline){
         ctx.strokeStyle = P.fontColor;
         ctx.lineWidth = 2*scale;
         linesArr.forEach((ln,i)=>{
           const tw = ctx.measureText(ln).width;
-          const y = baseY + i*lineHeight + fs*0.6;
+          const y = lineY(i) + fs*0.6;
           ctx.beginPath();
           ctx.moveTo(w/2 - tw/2, y); ctx.lineTo(w/2 + tw/2, y);
           ctx.stroke();
@@ -2609,6 +3070,8 @@ const exporterImpl = (() => {
       drawStyledLines(linesArr, startY+offsetY, lineHeight);
       ctx.restore();
     }
+    if (uwOn) ctx.restore();
+    }
     ctx.globalAlpha = 1;
     ctx.shadowColor = "transparent"; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
     if (P.watermark && P.watermark.trim()){
@@ -2628,7 +3091,7 @@ const exporterImpl = (() => {
       ctx.textAlign = "center"; ctx.textBaseline = "middle";
     }
     const dur = totalDuration || (recAudio && recAudio.duration) || P.audioDuration || 0;
-    if (dur > 0 && P.showProgressBar){
+    if (dur > 0 && P.showProgressBar && !useCard){
       const effDur = P.clipEnabled ? P.clipEnd - P.clipStart : dur;
       const effT = P.clipEnabled ? currentTime - P.clipStart : currentTime;
       const pct = clamp01(effT/effDur);
@@ -2671,7 +3134,8 @@ const exporterImpl = (() => {
       : (S.lyrics.length>0 ? S.lyrics[Math.floor(S.lyrics.length/2)].time : 0);
     particlesArr = [];
     const previewDur = P.clipEnabled ? Math.max(0, P.clipEnd-P.clipStart) : P.audioDuration;
-    if ((P.animEnabled && S.lyrics.length>0) || bgVid){
+    const useCardPv = P.layout==="card" || (P.layout==="auto" && P.mode==="card");
+    if ((P.animEnabled && S.lyrics.length>0) || bgVid || P.uw || useCardPv){
       const anchorIdx = getCurrentLyricIndex(S.lyrics, previewTime + S.offset/1000);
       const anchor = (anchorIdx>=0 && S.lyrics[anchorIdx]) ? S.lyrics[anchorIdx] : (S.lyrics[0] || {time: previewTime});
       const cycleMs = Math.max(1200, (P.animSpeed||300) + 900);
@@ -2701,7 +3165,12 @@ const exporterImpl = (() => {
         await Promise.race([
           Promise.all([
             document.fonts.load(`${P.fontSize}px "${P.fontFamily}"`),
-            document.fonts.load(`bold ${P.fontSize}px "${P.fontFamily}"`)
+            document.fonts.load(`bold ${P.fontSize}px "${P.fontFamily}"`),
+            ...((P.layout==="card" || (P.layout==="auto" && P.mode==="card")) && P.card && P.card.font ? [
+              document.fonts.load(`800 48px "${P.card.font}"`),
+              document.fonts.load(`700 32px "${P.card.font}"`),
+              document.fonts.load(`500 24px "${P.card.font}"`)
+            ] : [])
           ]),
           new Promise(res => setTimeout(res, 1500))
         ]);
@@ -2988,6 +3457,7 @@ const exporterImpl = (() => {
     for (const b of $$("[data-q]")) b.classList.toggle("on", b.dataset.q===P.quality);
     for (const b of $$("[data-fps]")) b.classList.toggle("on", +b.dataset.fps===P.fps);
     for (const b of $$("[data-tpos]")) b.classList.toggle("on", b.dataset.tpos===P.textPos);
+    for (const b of $$("[data-layout]")) b.classList.toggle("on", b.dataset.layout===P.layout);
     for (const b of $$("[data-wpos]")) b.classList.toggle("on", b.dataset.wpos===P.watermarkPos);
     for (const b of $$("[data-xanim]")) b.classList.toggle("on", b.dataset.xanim===P.animType);
     const rBox = $("ex-ratios");
@@ -3057,6 +3527,7 @@ const exporterImpl = (() => {
     for (const b of $$("[data-q]")) b.addEventListener("click", ()=>{ P.quality = b.dataset.q; P.activePreset=""; syncPanel(); startPreviewLoop(); });
     for (const b of $$("[data-fps]")) b.addEventListener("click", ()=>{ P.fps = +b.dataset.fps; P.activePreset=""; syncPanel(); });
     for (const b of $$("[data-tpos]")) b.addEventListener("click", ()=>{ P.textPos = b.dataset.tpos; P.activePreset=""; syncPanel(); startPreviewLoop(); });
+    for (const b of $$("[data-layout]")) b.addEventListener("click", ()=>{ P.layout = b.dataset.layout; syncPanel(); startPreviewLoop(); });
     for (const b of $$("[data-wpos]")) b.addEventListener("click", ()=>{ P.watermarkPos = b.dataset.wpos; syncPanel(); startPreviewLoop(); });
     for (const b of $$("[data-xanim]")) b.addEventListener("click", ()=>{ P.animType = b.dataset.xanim; syncPanel(); startPreviewLoop(); });
     $("ex-clip").addEventListener("click", ()=>{ P.clipEnabled = !P.clipEnabled; if (P.clipEnabled && P.clipEnd<=0) P.clipEnd = P.audioDuration||0; syncPanel(); startPreviewLoop(); });
@@ -3166,6 +3637,17 @@ const exporterImpl = (() => {
     P.animType = init.anim.animType || "fade";
     P.animSpeed = typeof init.anim.animSpeed==="number" ? init.anim.animSpeed : 300;
     P.clipEnabled = false; P.clipStart = 0; P.clipEnd = 0;
+    P.mode = init.mode || "lyric";
+    P.uw = !!(init.effects && init.effects.underwater);
+    P.card = { ...defaultCard, ...(init.card||{}), cut: { ...defaultCard.cut, ...((init.card&&init.card.cut)||{}) } };
+    P.layout = "auto";
+    setExportCover(S.cardCover || null);
+    (()=>{
+      const cut = P.card.cut || {};
+      if (cut.enabled && (cut.end||0) > (cut.start||0)){
+        P.clipEnabled = true; P.clipStart = cut.start; P.clipEnd = cut.end;
+      }
+    })();
     setExportBg(S.bgFile || null, { dim: (init.style.bgDim||0) > 0 ? Math.min(100, init.style.bgDim) : 45 });
     setStatus("idle");
     if (!P.showPreview){ P.showPreview = true; }
@@ -3175,7 +3657,8 @@ const exporterImpl = (() => {
     P.audioDuration = 0;
     probeMediaDuration(S.audioFile).then((d) => {
       if (d>0){
-        audioDurationProbe = d; P.audioDuration = d; P.clipEnd = d;
+        audioDurationProbe = d; P.audioDuration = d;
+        if (!P.clipEnabled) P.clipEnd = d;
         syncPanel(); startPreviewLoop();
       }
     });
