@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lyric Player v1.0 · Vanilla</title>
+<title>Lyric Player v0.5.0 · Vanilla</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bangers&family=Bebas+Neue&family=Caveat:wght@400;700&family=Comic+Neue:wght@400;700&family=Dancing+Script:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&family=Lora:wght@400;600;700&family=Merriweather:wght@400;700&family=Montserrat:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;600;700&family=Pacifico&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@400;600;700;800&family=Righteous&family=Roboto+Slab:wght@400;600;700&family=Rubik:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet" />
@@ -125,12 +125,15 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
 .ly-anim-slide{animation:lyricSlide var(--anim-speed,300ms) cubic-bezier(.22,.68,.31,1.01) both}
 .ly-anim-scale{animation:lyricScale var(--anim-speed,300ms) cubic-bezier(.22,.68,.31,1.01) both}
 .ly-anim-out{animation:lyricOut var(--anim-out,300ms) ease-in both}
-#fulltext{position:absolute;left:0;right:0;top:9vh;bottom:13vh;overflow:hidden;z-index:4;display:none}
+#fulltext{position:absolute;left:0;right:0;top:7vh;bottom:11vh;overflow:hidden;z-index:4;display:none;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 13%,#000 87%,transparent 100%);
+  mask-image:linear-gradient(to bottom,transparent 0,#000 13%,#000 87%,transparent 100%)}
 #fulltext.on{display:block}
 #fulltext-inner{padding:42vh 0;transition:transform .65s cubic-bezier(.22,.61,.36,1);will-change:transform}
-.ft-line{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;border-radius:8px;cursor:pointer;width:fit-content;max-width:92%;padding:6px 16px;margin:3px auto;transition:background-color .5s ease,opacity .5s ease,transform .5s ease;opacity:.62}
-.ft-line.past{opacity:.35}
-.ft-line.act{opacity:1;transform:scale(1.05);background:rgba(128,128,128,.32)}
+.ft-line{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border-radius:10px;cursor:pointer;width:fit-content;max-width:92%;padding:8px 18px;margin:5px auto;transition:background-color .5s ease,opacity .5s ease,transform .5s ease;opacity:.55}
+.ft-line:hover{background:rgba(255,255,255,.08)!important}
+.ft-line.past{opacity:.28}
+.ft-line.act{opacity:1;transform:scale(1.06);background:rgba(128,128,128,.30);box-shadow:inset 0 0 0 1px rgba(212,255,63,.22),0 4px 24px rgba(0,0,0,.35)}
 .ft-line .tx{line-height:1.45;transition:color .5s ease}
 .ft-line .tm{font-family:var(--mono);font-size:10px;letter-spacing:.08em;line-height:1.2;color:var(--dim);opacity:.7;transition:color .5s ease,opacity .5s ease}
 .ft-line.act .tm{color:var(--acid);opacity:.95}
@@ -258,7 +261,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
 
 <!-- ==================== SETUP ==================== -->
 <section id="scr-setup" class="screen on">
-  <div class="setup-head">Lyric Player <span class="dim">v1.0 · vanilla rebuild</span></div>
+  <div class="setup-head">Lyric Player <span class="dim">v0.5.0 · vanilla rebuild</span></div>
   <h1 class="setup-title">Masukin lagu &amp; lirik</h1>
   <div id="session-banner" class="session-banner" style="display:none">
     <div>
@@ -639,11 +642,12 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
               <div><label class="lbl">Frame rate</label><div class="row" style="gap:6px"><button class="chip" data-fps="24">24</button><button class="chip" data-fps="30">30</button><button class="chip" data-fps="60">60</button></div></div>
             </div>
             <div>
-              <label class="lbl">Background image</label>
+              <label class="lbl">Background Foto / Video</label>
+              <div class="hint" style="margin-bottom:6px">Otomatis dibawa dari player. Video pendek di-LOOP &amp; frame-nya ikut terekam di video hasil export.</div>
               <div class="row">
-                <button class="btn" id="ex-bg-pick" style="flex:1">Pilih gambar</button>
+                <button class="btn" id="ex-bg-pick" style="flex:1"><span id="ex-bg-label">Pilih Foto / Video</span></button>
                 <button class="btn danger" id="ex-bg-clear" style="display:none">hapus</button>
-                <input type="file" id="ex-bg-input" accept="image/*" hidden />
+                <input type="file" id="ex-bg-input" accept="image/*,video/*" hidden />
               </div>
               <div id="ex-bg-dimwrap" style="display:none;margin-top:8px">
                 <label class="lbl">Redupkan: <span id="v-exbgdim"></span>%</label>
@@ -1201,6 +1205,7 @@ function clearSession(){
 /* ================= STATE GLOBAL ================= */
 const S = {
   screen: "setup",
+  bgFile: null,
   audioFile: null, mp4File: null, lyrics: [], tapLines: [],
   style: { ...defaultStyle }, effects: { ...defaultEffects },
   offset: 0, anim: { animEnabled:true, animType:"fade", animSpeed:300 }
@@ -1495,8 +1500,14 @@ const player = (() => {
     const main = $("lyric-main"), out = $("lyric-out"), next = $("lyric-next");
     const st = $("lyric-stage");
     st.style.backgroundColor = S.style.bgColor;
-    if (S.effects.fullText){ paintFullText(); }
-    else {
+    paintFullText();
+    if (S.effects.fullText){
+      main.style.display = "none";
+      out.style.display = "none"; clearTimeout(triggerOut._t || 0);
+      next.style.display = "none";
+      return;
+    }
+    if (true) {
       const vi = visibleIdx();
       const txt = vi>=0 ? displayText(S.lyrics[vi].text, true) : "";
       main.style.display = "block";
@@ -1514,7 +1525,7 @@ const player = (() => {
     }
   }
   function triggerOut(idxPrev){
-    if (!S.anim.animEnabled || idxPrev < 0 || idxPrev === currentIndex) return;
+    if (!S.anim.animEnabled || S.effects.fullText || idxPrev < 0 || idxPrev === currentIndex) return;
     const out = $("lyric-out");
     const txt = displayText(S.lyrics[idxPrev] ? S.lyrics[idxPrev].text : "", true);
     if (!txt) return;
@@ -1532,9 +1543,10 @@ const player = (() => {
     vp.classList.toggle("on", S.effects.fullText);
     $("lyric-main").style.display = S.effects.fullText ? "none" : "block";
     if (!S.effects.fullText) return;
-    if (inner.dataset.count !== String(S.lyrics.length) || inner.dataset.stamp !== String(animKey0())){
-      inner.dataset.count = String(S.lyrics.length);
-      inner.dataset.stamp = String(animKey0());
+    const sig = [S.lyrics.length, S.style.fontFamily, S.style.fontSize, S.style.bold, S.style.italic,
+      S.style.uppercase, S.effects.fullTextTime, S.effects.zeroEmoji, ftDirty].join("|");
+    if (inner.dataset.sig !== sig){
+      inner.dataset.sig = sig;
       inner.textContent = "";
       S.lyrics.forEach((l,i) => {
         const d = el("div","ft-line"); d.dataset.line = String(i);
@@ -2107,12 +2119,14 @@ const player = (() => {
     if (bgMediaUrl) setTimeout(()=>URL.revokeObjectURL(bgMediaUrl), 4000);
     bgMediaUrl = u;
     bgMediaKind = kind;
+    S.bgFile = file;
     paintBg();
     notify(kind==="video" ? "Background video dipasang — loop otomatis" : "Background foto dipasang");
   }
   function clearBgMedia(){
     if (bgMediaUrl) setTimeout(()=>URL.revokeObjectURL(bgMediaUrl), 4000);
     bgMediaUrl = null; bgMediaKind = "none";
+    S.bgFile = null;
     paintBg();
   }
   function paintBg(){
@@ -2123,6 +2137,7 @@ const player = (() => {
     if (bgMediaKind==="video"){ if (vid.getAttribute("src")!==bgMediaUrl){ vid.src = bgMediaUrl||""; } if (playing) vid.play().catch(()=>{}); }
     $("bg-dim").style.background = bgMediaUrl && (S.style.bgDim||0)>0 ? `rgba(0,0,0,${Math.min(90,S.style.bgDim||0)/100})` : "rgba(0,0,0,0)";
     $("st-bg-clear").style.display = bgMediaUrl ? "" : "none";
+    $("st-bg-pick").textContent = bgMediaKind==="none" ? "Pilih Foto / Video" : ("Ganti (" + (bgMediaKind==="video"?"video":"foto") + ")");
     settingsSyncAll();
   }
 
@@ -2410,7 +2425,7 @@ const exporterImpl = (() => {
     fileNameTpl:"{nama}_subtitle",
     status:"idle", progress:0, audioDuration:0
   };
-  let bgImg = null, particlesArr = [], previewRaf = 0;
+  let bgImg = null, bgVid = null, bgObjUrl = null, particlesArr = [], previewRaf = 0;
   let audioDurationProbe = 0, recRaf = 0, recorder = null, recAudio = null, recAudioUrl = null, recCtx = null;
   let exportDurationRef = 0, recordStartedAt = 0;
   let downloadUrl = null, downloadExt = "webm", finalSize = 0, finalDurStr = "";
@@ -2428,8 +2443,8 @@ const exporterImpl = (() => {
   function drawFrame(ctx, currentTime, w, h, totalDuration){
     ctx.fillStyle = P.bgColor;
     ctx.fillRect(0,0,w,h);
-    if (bgImg){
-      drawCoverImage(ctx, bgImg, w, h);
+    if (bgImg || (bgVid && bgVid.readyState >= 2)){
+      drawCoverImage(ctx, bgImg || bgVid, w, h);
       if (P.bgDim > 0){ ctx.fillStyle = `rgba(0,0,0,${Math.min(1,P.bgDim/100)})`; ctx.fillRect(0,0,w,h); }
     }
     const scale = P.quality === "1080" ? 1.5 : 1;
@@ -2590,9 +2605,9 @@ const exporterImpl = (() => {
       : (S.lyrics.length>0 ? S.lyrics[Math.floor(S.lyrics.length/2)].time : 0);
     particlesArr = [];
     const previewDur = P.clipEnabled ? Math.max(0, P.clipEnd-P.clipStart) : P.audioDuration;
-    if (P.animEnabled && S.lyrics.length>0){
+    if ((P.animEnabled && S.lyrics.length>0) || bgVid){
       const anchorIdx = getCurrentLyricIndex(S.lyrics, previewTime + S.offset/1000);
-      const anchor = anchorIdx>=0 ? S.lyrics[anchorIdx] : S.lyrics[0];
+      const anchor = (anchorIdx>=0 && S.lyrics[anchorIdx]) ? S.lyrics[anchorIdx] : (S.lyrics[0] || {time: previewTime});
       const cycleMs = Math.max(1200, (P.animSpeed||300) + 900);
       const t0 = (typeof performance!=="undefined" ? performance.now() : Date.now());
       const loop = () => {
@@ -2698,11 +2713,17 @@ const exporterImpl = (() => {
     recorder.start(1000);
     recordStartedAt = Date.now();
     await rec.play();
+    if (bgVid){
+      try{ if (bgVid.duration>0) bgVid.currentTime = startTime % bgVid.duration; }catch(err){}
+      try{ bgVid.playbackRate = rec.playbackRate || 1; }catch(err){}
+      bgVid.play().catch(()=>{});
+    }
     let stopped = false;
     const finishRecord = () => {
       if (stopped) return;
       stopped = true;
       cancelAnimationFrame(recRaf);
+      try{ if (bgVid) bgVid.pause(); }catch(err){}
       try{ if (!rec.paused) rec.pause(); }catch(err){}
       try{ recorder.stop(); }catch(err){}
     };
@@ -2861,6 +2882,31 @@ const exporterImpl = (() => {
     P.activePreset = id;
     syncPanel(); startPreviewLoop();
   }
+  function setExportBg(file, opts){
+    if (bgVid){ try{ bgVid.pause(); bgVid.removeAttribute("src"); bgVid.load(); }catch(err){} bgVid = null; }
+    bgImg = null;
+    if (bgObjUrl){ URL.revokeObjectURL(bgObjUrl); bgObjUrl = null; }
+    if (opts && typeof opts.dim === "number") P.bgDim = Math.max(0, Math.min(100, opts.dim));
+    if (!file){ $("ex-bg-label").textContent = "Pilih Foto / Video"; syncPanel(); startPreviewLoop(); return; }
+    const kind = (file.type||"").startsWith("video") ? "video" : (file.type||"").startsWith("image") ? "image" : null;
+    if (!kind){ alert("Background harus file foto atau video"); return; }
+    const u = URL.createObjectURL(file); bgObjUrl = u;
+    if (kind === "image"){
+      $("ex-bg-label").textContent = "Ganti (foto)";
+      const img = new Image();
+      img.onload = () => { bgImg = img; syncPanel(); startPreviewLoop(); };
+      img.onerror = () => { syncPanel(); startPreviewLoop(); };
+      img.src = u;
+    } else {
+      $("ex-bg-label").textContent = "Ganti (video)";
+      const v = document.createElement("video");
+      v.muted = true; v.loop = true; v.preload = "auto"; v.playsInline = true;
+      v.addEventListener("seeked", ()=>startPreviewLoop(), { once:true });
+      v.src = u; bgVid = v;
+      v.play().catch(()=>{});
+    }
+    syncPanel(); startPreviewLoop();
+  }
   function syncPanel(){
     for (const b of $$("[data-preset]")) b.classList.toggle("on", b.dataset.preset===P.activePreset);
     for (const b of $$("[data-expmode]")) b.classList.toggle("on", b.dataset.expmode===P.exportMode);
@@ -2888,8 +2934,8 @@ const exporterImpl = (() => {
     $("ex-ce-min").value = Math.floor(P.clipEnd/60);
     $("ex-ce-sec").value = Math.floor(P.clipEnd%60);
     $("ex-bgDim").value = P.bgDim; $("v-exbgdim").textContent = P.bgDim;
-    $("ex-bg-clear").style.display = bgImg ? "" : "none";
-    $("ex-bg-dimwrap").style.display = bgImg ? "block" : "none";
+    $("ex-bg-clear").style.display = (bgImg||bgVid) ? "" : "none";
+    $("ex-bg-dimwrap").style.display = (bgImg||bgVid) ? "block" : "none";
     $("ex-progressbar").classList.toggle("on", P.showProgressBar);
     $("ex-textband").classList.toggle("on", P.textBand);
     $("ex-band-opts").style.display = P.textBand ? "block" : "none";
@@ -2956,14 +3002,9 @@ const exporterImpl = (() => {
     $("ex-bg-input").addEventListener("change", (ev)=>{
       const f = ev.target.files && ev.target.files[0];
       ev.target.value = "";
-      if (!f) return;
-      const u = URL.createObjectURL(f);
-      const img = new Image();
-      img.onload = () => { bgImg = img; URL.revokeObjectURL(u); syncPanel(); startPreviewLoop(); };
-      img.onerror = () => { bgImg = null; URL.revokeObjectURL(u); syncPanel(); startPreviewLoop(); };
-      img.src = u;
+      if (f) setExportBg(f);
     });
-    $("ex-bg-clear").addEventListener("click", ()=>{ bgImg = null; syncPanel(); startPreviewLoop(); });
+    $("ex-bg-clear").addEventListener("click", ()=>setExportBg(null));
     $("ex-bgDim").addEventListener("input", (ev)=>{ P.bgDim = +ev.target.value; $("v-exbgdim").textContent = P.bgDim; startPreviewLoop(); });
     $("ex-progressbar").addEventListener("click", ()=>{ P.showProgressBar = !P.showProgressBar; syncPanel(); startPreviewLoop(); });
     $("ex-textband").addEventListener("click", ()=>{ P.textBand = !P.textBand; syncPanel(); startPreviewLoop(); });
@@ -3006,6 +3047,7 @@ const exporterImpl = (() => {
       startExport().catch((err)=>{
         try{ if (recorder && recorder.state!=="inactive") recorder.stop(); }catch(e){}
         try{ if (recAudio) recAudio.pause(); }catch(e){}
+        try{ if (bgVid) bgVid.pause(); }catch(e){}
         try{ if (recCtx) recCtx.close(); }catch(e){}
         setStatus("error");
         $("ex-err-msg").textContent = err && err.message ? err.message : String(err);
@@ -3044,6 +3086,7 @@ const exporterImpl = (() => {
     P.animType = init.anim.animType || "fade";
     P.animSpeed = typeof init.anim.animSpeed==="number" ? init.anim.animSpeed : 300;
     P.clipEnabled = false; P.clipStart = 0; P.clipEnd = 0;
+    setExportBg(S.bgFile || null, { dim: (init.style.bgDim||0) > 0 ? Math.min(100, init.style.bgDim) : 45 });
     setStatus("idle");
     if (!P.showPreview){ P.showPreview = true; }
     show("export");
