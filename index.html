@@ -33,9 +33,11 @@ button{font-family:'IBM Plex Mono',ui-monospace,monospace}
 
 /* ---------- buttons ---------- */
 .btn{background:transparent;border:1px solid var(--line);color:var(--txt);font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;cursor:pointer;transition:all .18s;border-radius:3px}
-.btn:hover{border-color:var(--acid);color:var(--acid)}
+.btn:hover{border-color:var(--acid);color:var(--acid);transform:translateY(-1px)}
+.btn:active,.chip:active,.ghost-btn:active,.linkbtn:active{transform:scale(.96)}
+:focus-visible{outline:1.5px solid rgba(212,255,63,.75);outline-offset:2px;border-radius:3px}
 .btn.solid{background:var(--acid);border-color:var(--acid);color:#050505;font-weight:700}
-.btn.solid:hover{opacity:.9;color:#050505}
+.btn.solid:hover{opacity:.9;color:#050505;transform:translateY(-1px);box-shadow:0 0 18px rgba(212,255,63,.35)}
 .btn.danger:hover{border-color:var(--red);color:var(--red)}
 .btn:disabled{opacity:.3;cursor:not-allowed}
 .btn:disabled:hover{border-color:var(--line);color:var(--txt)}
@@ -43,7 +45,7 @@ button{font-family:'IBM Plex Mono',ui-monospace,monospace}
 .btn-lg:hover:not(:disabled){background:var(--acid);border-color:var(--acid);color:#050505}
 .btn-lg:disabled{opacity:.3;cursor:not-allowed}
 .chip{background:transparent;border:1px solid var(--line);color:var(--txt);font-family:var(--mono);font-size:10px;padding:6px 12px;cursor:pointer;transition:all .15s;border-radius:3px;white-space:nowrap}
-.chip:hover{border-color:var(--dim2)}
+.chip:hover{border-color:var(--dim2);transform:translateY(-1px)}
 .chip.on{background:var(--acid);border-color:var(--acid);color:#050505;font-weight:700}
 .chip.on-red{background:var(--red);border-color:var(--red);color:#fff}
 .tabs{display:flex;gap:2px;background:var(--line);border-radius:4px;overflow:hidden}
@@ -63,13 +65,16 @@ button{font-family:'IBM Plex Mono',ui-monospace,monospace}
 .field{width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-family:var(--mono);font-size:11px;padding:8px;border-radius:3px;outline:none;transition:border-color .15s}
 .field:focus{border-color:var(--acid)}
 textarea.field{resize:vertical;line-height:1.6}
-input[type=range]{width:100%;accent-color:var(--acid);background:transparent;cursor:pointer}
+input[type=range]{width:100%;accent-color:var(--acid);background:transparent;cursor:pointer;height:18px}
+input[type=range]::-webkit-slider-thumb{filter:drop-shadow(0 0 6px rgba(212,255,63,.35))}
+input[type=color]{transition:border-color .15s}
+input[type=color]:hover{border-color:var(--acid)}
 input[type=color]{width:100%;height:30px;background:transparent;border:1px solid var(--line);border-radius:3px;cursor:pointer;padding:2px}
 input[type=number]{-moz-appearance:textfield}
 select.field{cursor:pointer}
 
 /* ---------- cards / layout ---------- */
-.card{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:12px}
+.card{background:linear-gradient(180deg,#101010 0%,#0c0c0c 100%);border:1px solid var(--line);border-radius:8px;padding:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 8px 26px rgba(0,0,0,.28)}
 .card .card-title{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.14em;color:var(--acid);margin-bottom:8px}
 .rows{display:flex;flex-direction:column;gap:10px}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
@@ -86,10 +91,10 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
 .dz .dur{font-size:9px;color:var(--acid)}
 
 /* ---------- setup ---------- */
-#scr-setup{gap:26px;padding:24px;text-align:center;overflow-y:auto;display:none}
+#scr-setup{gap:26px;padding:24px;text-align:center;overflow-y:auto;display:none;background:radial-gradient(1100px 620px at 50% -12%,#0d1307 0%,rgba(5,5,5,0) 60%)}
 #scr-setup.on{display:flex}
 .setup-head{font-family:var(--mono);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--acid)}
-.setup-title{font-size:clamp(26px,5vw,42px);font-weight:800;letter-spacing:-.02em;margin:0}
+.setup-title{font-size:clamp(26px,5vw,42px);font-weight:800;letter-spacing:-.02em;margin:0;background:linear-gradient(92deg,#f5f5f0 15%,#d4ff3f 85%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .session-banner{display:flex;align-items:center;gap:12px;border:1px solid rgba(212,255,63,.4);background:rgba(212,255,63,.05);border-radius:6px;padding:10px 16px;max-width:620px;text-align:left}
 .setup-note{font-family:var(--mono);font-size:11px;color:var(--dim);max-width:540px;line-height:1.7}
 .setup-note b{color:var(--acid)}
@@ -129,20 +134,21 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
   -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 13%,#000 87%,transparent 100%);
   mask-image:linear-gradient(to bottom,transparent 0,#000 13%,#000 87%,transparent 100%)}
 #fulltext.on{display:block}
-#fulltext-inner{padding:42vh 0;transition:transform .65s cubic-bezier(.22,.61,.36,1);will-change:transform}
-.ft-line{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border-radius:10px;cursor:pointer;width:fit-content;max-width:92%;padding:8px 18px;margin:5px auto;transition:background-color .5s ease,opacity .5s ease,transform .5s ease;opacity:.55}
+#fulltext-inner{padding:42vh 0;transition:transform 120ms cubic-bezier(.33,.9,.35,1);will-change:transform}
+.ft-line{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border-radius:10px;cursor:pointer;width:fit-content;max-width:92%;padding:8px 18px;margin:5px auto;transition:background-color .45s ease,opacity .45s ease,transform .45s cubic-bezier(.22,.68,.31,1.01);opacity:.5}
 .ft-line:hover{background:rgba(255,255,255,.08)!important}
 .ft-line.past{opacity:.28}
 .ft-line.act{opacity:1;transform:scale(1.06);background:rgba(128,128,128,.30);box-shadow:inset 0 0 0 1px rgba(212,255,63,.22),0 4px 24px rgba(0,0,0,.35)}
-.ft-line .tx{line-height:1.45;transition:color .5s ease}
-.ft-line .tm{font-family:var(--mono);font-size:10px;letter-spacing:.08em;line-height:1.2;color:var(--dim);opacity:.7;transition:color .5s ease,opacity .5s ease}
+.ft-line .tx{line-height:1.45;transition:color .45s ease}
+.ft-line .tm{font-family:var(--mono);font-size:10px;letter-spacing:.08em;line-height:1.2;color:var(--dim);opacity:.7;transition:color .45s ease,opacity .45s ease}
 .ft-line.act .tm{color:var(--acid);opacity:.95}
 #media-el{position:absolute;left:-99999px;top:0;width:2px;height:2px;opacity:0;pointer-events:none}
 #media-el.video-on{left:auto;top:auto;width:auto;height:auto;opacity:1;position:static}
-#topbar{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;z-index:20;gap:10px}
+#topbar{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;z-index:20;gap:10px;background:linear-gradient(180deg,rgba(5,5,5,.55),rgba(5,5,5,0))}
+#topbar .btn{background:rgba(10,10,10,.55);backdrop-filter:blur(6px)}
 #now-playing{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40vw}
-#toast{position:absolute;top:60px;left:50%;transform:translateX(-50%);z-index:60;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:var(--acid);color:#050505;padding:6px 14px;border-radius:4px;box-shadow:0 6px 20px rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .2s}
-#toast.on{opacity:1}
+#toast{position:absolute;top:60px;left:50%;transform:translateX(-50%) translateY(-6px);z-index:60;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:var(--acid);color:#050505;padding:6px 14px;border-radius:6px;box-shadow:0 6px 24px rgba(0,0,0,.55),0 0 18px rgba(212,255,63,.25);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 #ref-box{position:absolute;top:56px;right:20px;z-index:22;display:none;flex-direction:column;gap:4px;align-items:flex-end}
 #ref-box.on{display:flex}
 #ref-box .lbl{margin:0}
@@ -254,6 +260,16 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
 .mode-card.on .t{color:var(--acid)}
 .mode-card .tag{font-size:8px;background:var(--line);color:var(--dim);border-radius:3px;padding:2px 4px}
 .mode-card .d{font-family:var(--mono);font-size:8px;color:var(--dim);margin-top:3px}
+
+@media (max-width:760px){
+  #topbar{flex-direction:column;align-items:flex-start;gap:8px}
+  #topbar .row{flex-wrap:wrap}
+  #settings{width:calc(100vw - 40px);max-height:60vh}
+  #ref-box video{width:150px}
+  #tcontrols{padding:8px 10px;gap:6px}
+  .dz{width:calc(50vw - 20px)}
+  #lylist{width:calc(100vw - 40px)}
+}
 </style>
 </head>
 <body>
@@ -531,7 +547,9 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
       </div>
       <div id="tcontrols">
         <div class="grp">
-          <button class="ghost-btn" id="tp-play">▶</button>
+          <button class="ghost-btn" id="tp-prev" title="Baris lirik sebelumnya (↑)">⏮</button>
+          <button class="ghost-btn" id="tp-play" title="Play / Pause (SPASI)">▶</button>
+          <button class="ghost-btn" id="tp-next" title="Baris lirik berikutnya (↓)">⏭</button>
           <span class="mono" style="font-size:11px;color:var(--dim)" id="tp-time">00:00 / 00:00</span>
           <span class="badge" id="tp-offset"></span>
           <span class="badge red" id="tp-emoji">emoji</span>
@@ -552,11 +570,11 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
           </div>
         </div>
         <div class="grp">
-          <button class="btn" id="tp-dl-lrc" title="Download file .lrc (offset diterapkan)">.lrc</button>
-          <button class="btn" id="tp-save" title="Simpan proyek ke file .json (audio + lirik + timing)">Simpan</button>
-          <button class="btn" id="tp-load" title="Muat proyek dari file .json">Muat</button>
+          <button class="btn" id="tp-dl-lrc" title="Download file .lrc (offset diterapkan)">⬇ .lrc</button>
+          <button class="btn" id="tp-save" title="Simpan proyek ke file .json (audio + lirik + timing)">💾 Simpan</button>
+          <button class="btn" id="tp-load" title="Muat proyek dari file .json">📂 Muat</button>
           <input type="file" id="tp-load-input" accept=".json,application/json" hidden />
-          <button class="btn solid" id="tp-export">EXPORT</button>
+          <button class="btn solid" id="tp-export">🎬 EXPORT</button>
         </div>
       </div>
     </div>
@@ -625,11 +643,10 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
           </div>
         </div>
         <div class="card">
-          <div class="card-title">Export Mode</div>
-          <div class="row" style="gap:6px">
-            <button class="mode-card" data-expmode="webcodecs"><span class="t">WebCodecs <span class="tag" id="tag-wc">MP4</span></span><span class="d">Try MP4</span></button>
-            <button class="mode-card on" data-expmode="mediarecorder"><span class="t">MediaRecorder <span class="tag">AUTO</span></span><span class="d">Best quality</span></button>
-            <button class="mode-card" data-expmode="webm"><span class="t">WebM <span class="tag">COMPAT</span></span><span class="d">Force WebM</span></button>
+          <div class="card-title">Format Output</div>
+          <div class="row" style="gap:8px;align-items:center">
+            <span class="chip on" style="cursor:default">🎬 MP4 · H.264 + AAC</span>
+            <span class="hint" style="flex:1">MediaRecorder real-time — durasi selalu penuh sesuai lagu/clip, nggak pernah kepotong. Butuh Chrome / Edge / Safari terbaru.</span>
           </div>
         </div>
         <div class="card">
@@ -647,7 +664,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
               <div class="row">
                 <button class="btn" id="ex-bg-pick" style="flex:1"><span id="ex-bg-label">Pilih Foto / Video</span></button>
                 <button class="btn danger" id="ex-bg-clear" style="display:none">hapus</button>
-                <input type="file" id="ex-bg-input" accept="image/*,video/*" hidden />
+                <input type="file" id="ex-bg-input" hidden />
               </div>
               <div id="ex-bg-dimwrap" style="display:none;margin-top:8px">
                 <label class="lbl">Redupkan: <span id="v-exbgdim"></span>%</label>
@@ -739,21 +756,22 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
             <div class="hint mono acid" id="ex-clipinfo" style="display:none"></div>
             <div class="hint mono acid" id="ex-offsetinfo" style="display:none"></div>
           </div>
-          <button class="btn solid" id="ex-start" style="width:100%;padding:14px;font-size:12px;letter-spacing:.15em">MULAI EXPORT</button>
+          <button class="btn solid" id="ex-start" style="width:100%;padding:14px;font-size:12px;letter-spacing:.15em">🎬 MULAI EXPORT</button>
         </div>
         <div id="ex-rec" class="rows" style="align-items:center;gap:14px;display:none">
           <div id="ex-rec-canvas-holder" style="width:100%;text-align:center"></div>
           <div class="exp-status"><span class="recdot"></span><span id="ex-rec-pct">RECORDING... 0%</span></div>
           <div class="mono dim" style="font-size:11px"><span id="ex-rec-cur">00:00</span> / <span id="ex-rec-dur">00:00</span> <span id="ex-rec-eta" style="color:var(--acid)"></span></div>
           <div class="exp-prog"><i id="ex-rec-bar"></i></div>
-          <div class="hint">Jangan tutup tab ini sampai selesai — video direkam real-time sesuai durasi lagu/clip.</div>
+          <button class="btn danger" id="ex-stop">⏹ Stop sekarang &amp; finalize</button>
+          <div class="hint">Rekaman real-time — tab jangan ditutup. Lagu penuh akan berhenti otomatis tepat di akhir. Sedang ngapalin clip? tekan Stop buat finalize lebih awal.</div>
         </div>
         <div id="ex-done" class="rows" style="align-items:center;gap:14px;display:none">
           <div class="exp-big">BERHASIL</div>
           <div class="mono acid" style="font-size:13px">Video siap!</div>
           <div class="exp-meta" id="ex-done-meta"></div>
           <div class="hint" id="ex-done-note" style="max-width:400px;text-align:center;display:none"></div>
-          <button class="btn solid" id="ex-download" style="padding:14px 40px;font-size:12px;letter-spacing:.15em">Download</button>
+          <button class="btn solid" id="ex-download" style="padding:14px 40px;font-size:12px;letter-spacing:.15em">⬇ Download MP4</button>
           <button class="linkbtn" id="ex-again">Export lagi</button>
         </div>
         <div id="ex-err" class="rows" style="align-items:center;gap:14px;display:none">
@@ -1566,20 +1584,55 @@ const player = (() => {
         inner.appendChild(d);
       });
     }
+    ftLastIdx = -2;
+    ftUpdateMotion();
+  }
+
+  /* ---- karaoke: pergerakan per-frame biar TIDAK kaku ---- */
+  let ftRaf = 0, ftLastIdx = -2;
+  function ftUpdateMotion(){
+    const vp = $("fulltext"), inner = $("fulltext-inner");
+    if (!S.effects.fullText || !vp.classList.contains("on") || !inner.children.length) return;
+    const now = (media ? media.currentTime : 0) + S.offset/1000;
+    const idx = lyricAt(now);
+    const center = (elm) => elm.offsetTop + elm.offsetHeight/2;
+    let nextIdx = idx>=0 ? idx+1 : 0;
+    if (nextIdx >= S.lyrics.length) nextIdx = -1;
+    const curEl  = (idx>=0 && idx<inner.children.length) ? inner.children[idx] : null;
+    const nextEl = (nextIdx>=0 && nextIdx<inner.children.length) ? inner.children[nextIdx] : null;
+    let targetY = null;
+    if (curEl && nextEl){
+      const span = Math.max(0.4, S.lyrics[nextIdx].time - S.lyrics[idx].time);
+      const p = clamp01((now - S.lyrics[idx].time) / span);
+      // tahan di baris lama 68% durasi, lalu meluncur halus di sisanya (smoothstep)
+      const m = clamp01((p - 0.68) / 0.32);
+      const e = m*m*(3-2*m);
+      targetY = center(curEl) + (center(nextEl)-center(curEl)) * e;
+    } else if (curEl) targetY = center(curEl);
+    else if (nextEl) targetY = center(nextEl);
+    if (targetY === null) targetY = 0;
+    const y = targetY - vp.clientHeight/2;
+    inner.style.transform = `translateY(${-Math.max(0,y)}px)`;
     const vi = visibleIdx();
-    for (const d of inner.children){
-      const i = Number(d.dataset.line);
-      d.classList.toggle("act", i===vi);
-      d.classList.toggle("past", vi>=0 && i<vi);
-      const tx = d.querySelector(".tx");
-      if (tx) tx.style.color = i===vi ? S.style.fontColor : "#8a8a8a";
-    }
-    const elx = vi>=0 ? inner.querySelector(`[data-line="${vi}"]`) : null;
-    if (elx){
-      const y = elx.offsetTop + elx.offsetHeight/2 - vp.clientHeight/2;
-      inner.style.transform = `translateY(${-Math.max(0,y)}px)`;
+    if (vi !== ftLastIdx){
+      ftLastIdx = vi;
+      for (const d of inner.children){
+        const i = Number(d.dataset.line);
+        d.classList.toggle("act", i===vi);
+        d.classList.toggle("past", vi>=0 && i<vi);
+        const tx = d.querySelector(".tx");
+        if (tx) tx.style.color = i===vi ? S.style.fontColor : "#8a8a8a";
+      }
+      if ($("lylist").classList.contains("on")) paintLyList();
     }
   }
+  function ftStartLoop(){
+    cancelAnimationFrame(ftRaf);
+    if (!S.effects.fullText) return;
+    const loop = () => { ftUpdateMotion(); ftRaf = requestAnimationFrame(loop); };
+    ftRaf = requestAnimationFrame(loop);
+  }
+  function ftStopLoop(){ cancelAnimationFrame(ftRaf); ftRaf = 0; }
   let ftDirty = 0;
   function animKey0(){ return ftDirty; }
 
@@ -1991,6 +2044,7 @@ const player = (() => {
     st(id).addEventListener("click", () => { set(!get()); settingsSyncAll(); afterSettings(); markDirty(); });
   }
   function afterSettings(){
+    if (S.effects.fullText) ftStartLoop(); else ftStopLoop();
     renderLyric(true);
     if (S.effects.particles) particlesLoop(); else stopParticles();
     if (S.effects.waveform) waveformLoop(); else stopWaveform();
@@ -2057,7 +2111,14 @@ const player = (() => {
     ob.classList.toggle("on", S.offset !== 0);
     ob.textContent = (S.offset>0?"+":"") + S.offset + "ms";
   }
+  function paintFontOptions(){
+    for (const op of $$("select#st-fontFamily option")){
+      const v = op.value;
+      if (v && !/sistem/.test(op.textContent)) op.style.fontFamily = `"${v}", sans-serif`;
+    }
+  }
   function wireSettings(){
+    paintFontOptions();
     for (const b of $$("#set-tabs button")){
       b.addEventListener("click", () => {
         for (const x of $$("#set-tabs button")) x.classList.toggle("on", x===b);
@@ -2113,7 +2174,8 @@ const player = (() => {
   /* ---- background media ---- */
   function onPickBgMedia(file){
     if (!file) return;
-    const kind = (file.type||"").startsWith("video") ? "video" : (file.type||"").startsWith("image") ? "image" : null;
+    const isVid = getMediaKind(file)==="video" || /\.(mp4|m4v|mov|webm|mkv|avi|ogv|mpg|mpeg|3gp|ts|mts|flv|wmv)$/i.test(file.name||"");
+    const kind = isVid ? "video" : (/^image\//.test(file.type||"") || /\.(png|jpe?g|webp|gif|avif|bmp)$/i.test(file.name||"")) ? "image" : null;
     if (!kind){ notify("Background harus file foto atau video"); return; }
     const u = URL.createObjectURL(file);
     if (bgMediaUrl) setTimeout(()=>URL.revokeObjectURL(bgMediaUrl), 4000);
@@ -2284,6 +2346,8 @@ const player = (() => {
   /* ---- transport wiring ---- */
   function wireTransport(){
     $("tp-play").addEventListener("click", togglePlay);
+    $("tp-prev").addEventListener("click", ()=>jumpToLyric(-1));
+    $("tp-next").addEventListener("click", ()=>jumpToLyric(1));
     $("tp-rate-down").addEventListener("click", ()=>setRate(-0.25));
     $("tp-rate-up").addEventListener("click", ()=>setRate(0.25));
     $("tp-a").addEventListener("click", setA);
@@ -2382,10 +2446,12 @@ const player = (() => {
     settingsSyncAll();
     applyAnimSpeed();
     afterSettings();
+    ftLastIdx = -2;
     paintMarks();
     paintLoop();
     paintTransport();
     markDirty();
+    if (S.effects.fullText) ftStartLoop();
     window.addEventListener("keydown", keyHandler);
   }
   function leave(stopAll){
@@ -2428,7 +2494,7 @@ const exporterImpl = (() => {
   let bgImg = null, bgVid = null, bgObjUrl = null, particlesArr = [], previewRaf = 0;
   let audioDurationProbe = 0, recRaf = 0, recorder = null, recAudio = null, recAudioUrl = null, recCtx = null;
   let exportDurationRef = 0, recordStartedAt = 0;
-  let downloadUrl = null, downloadExt = "webm", finalSize = 0, finalDurStr = "";
+  let downloadUrl = null, downloadExt = "mp4", finalSize = 0, finalDurStr = "";
 
   function canvasSize(){
     const base = P.quality === "1080" ? 1080 : 720;
@@ -2656,10 +2722,20 @@ const exporterImpl = (() => {
     const seekedDur = await forceRealDuration(rec, 2500);
     const liveDur = typeof rec.duration==="number" && isFinite(rec.duration) && rec.duration>0 ? rec.duration : 0;
     const realDur = Math.max(probedDur, typeof seekedDur==="number" && isFinite(seekedDur) ? seekedDur : 0, liveDur);
-    const endTime = P.clipEnabled ? (realDur>0 ? Math.min(P.clipEnd, realDur) : P.clipEnd) : (realDur>0 ? realDur : rec.duration);
-    const totalDuration = Math.max(0, endTime - startTime);
+    const metaOk = typeof rec.duration==="number" && isFinite(rec.duration) && rec.duration>0;
+    let stopAt, stopFromClock, totalDuration;
+    if (P.clipEnabled){
+      const cand = Math.max(realDur, metaOk ? rec.duration : 0);
+      stopAt = cand>0 ? Math.min(P.clipEnd, cand) : P.clipEnd;
+      stopFromClock = true;
+      totalDuration = Math.max(0, stopAt - startTime);
+    } else {
+      // tanpa clip: JANGAN pernah stop pakai jam/estimasi — tunggu 'ended' asli,
+      // biar lagu 60 detik tidak kepotong jadi 20 detik gara2 metadata ngawur
+      stopAt = 0; stopFromClock = false;
+      totalDuration = Math.max(0, (metaOk ? rec.duration : realDur) - startTime);
+    }
     $("ex-rec-dur").textContent = formatTime(totalDuration);
-    let stopAt = endTime;
     exportDurationRef = totalDuration;
     const audioContext = new AudioContext();
     recCtx = audioContext;
@@ -2669,28 +2745,28 @@ const exporterImpl = (() => {
     source.connect(audioContext.destination);
     const canvasStream = cv.captureStream(P.fps);
     const combined = new MediaStream([...canvasStream.getVideoTracks(), ...dest.stream.getAudioTracks()]);
-    let mimeType = "video/webm;codecs=vp9,opus";
-    let ext = "webm";
+    if (typeof MediaRecorder === "undefined") throw new Error("Browser tidak punya MediaRecorder — pakai Chrome, Edge, atau Safari terbaru.");
     const chunks = [];
-    if (P.exportMode === "webm"){
-      for (const t of ["video/webm;codecs=vp9,opus","video/webm;codecs=vp8,opus","video/webm"]){
-        if (MediaRecorder.isTypeSupported(t)){ mimeType = t; break; }
-      }
-    } else if (P.exportMode === "webcodecs"){
-      if (MediaRecorder.isTypeSupported("video/mp4")){ mimeType = "video/mp4"; ext = "mp4"; }
-    } else {
-      for (const t of ["video/webm;codecs=vp9,opus","video/webm;codecs=vp8,opus","video/webm","video/mp4"]){
-        if (MediaRecorder.isTypeSupported(t)){ mimeType = t; ext = t.includes("mp4") ? "mp4" : "webm"; break; }
-      }
+    let mimeType = null;
+    for (const t of ["video/mp4;codecs=avc1.64001F,mp4a.40.2","video/mp4;codecs=avc1.42E01E,mp4a.40.2",
+                    "video/mp4;codecs=avc1,mp4a.40.2","video/mp4;codecs=avc1.64001F","video/mp4;codecs=avc1","video/mp4"]){
+      if (MediaRecorder.isTypeSupported(t)){ mimeType = t; break; }
     }
-    downloadExt = ext;
+    if (!mimeType) throw new Error("Browser ini tidak bisa merekam MP4. Pakai Chrome / Edge / Safari versi terbaru.");
+    downloadExt = "mp4";
     recorder = new MediaRecorder(combined, { mimeType, videoBitsPerSecond: P.quality==="1080" ? 8e6 : 5e6, audioBitsPerSecond: 192e3 });
     recorder.ondataavailable = (e) => { if (e.data.size>0) chunks.push(e.data); };
     recorder.onstop = async () => {
       const raw = new Blob(chunks, { type: mimeType });
       const recordedMs = recordStartedAt>0 ? Date.now()-recordStartedAt : 0;
-      const targetMs = exportDurationRef>0 ? exportDurationRef*1000 : recordedMs;
-      const stampMs = Math.max(1, Math.round(Math.min(targetMs, recordedMs>0 ? recordedMs : targetMs)));
+      let stampMs;
+      if (P.clipEnabled){
+        const targetMs = exportDurationRef>0 ? exportDurationRef*1000 : recordedMs;
+        stampMs = Math.max(1, Math.round(Math.min(targetMs, recordedMs>0 ? recordedMs : targetMs)));
+      } else {
+        // full song: durasi nyata = waktu terekam (recorder berhenti pas lagu 'ended')
+        stampMs = Math.max(1, Math.round(recordedMs>0 ? recordedMs : (exportDurationRef>0?exportDurationRef*1000:1)));
+      }
       const fixed = await fixMediaDuration(raw, stampMs);
       finalSize = fixed.size;
       finalDurStr = formatTime(stampMs/1000);
@@ -2730,19 +2806,19 @@ const exporterImpl = (() => {
     window._exportFinish = finishRecord;
     const renderLoop = () => {
       const liveDur2 = rec.duration;
-      if (!P.clipEnabled && typeof liveDur2==="number" && isFinite(liveDur2) && liveDur2>stopAt){
-        stopAt = liveDur2;
-        exportDurationRef = Math.max(0, stopAt - startTime);
+      if (!P.clipEnabled && typeof liveDur2==="number" && isFinite(liveDur2) && liveDur2>0 && (liveDur2-startTime) > exportDurationRef){
+        exportDurationRef = Math.max(0, liveDur2 - startTime);
+        $("ex-rec-dur").textContent = formatTime(exportDurationRef);
       }
-      if (rec.ended || (stopAt>0 && rec.currentTime >= stopAt)){
-        const finalT = stopAt>0 ? stopAt : rec.currentTime;
+      if (rec.ended || (stopFromClock && stopAt>0 && rec.currentTime >= stopAt)){
+        const finalT = (stopFromClock && stopAt>0) ? stopAt : (typeof liveDur2==="number" && isFinite(liveDur2) && liveDur2>0 ? liveDur2 : rec.currentTime);
         drawFrame(ctx, Math.min(rec.currentTime, finalT), w, h, finalT);
         finishRecord();
       } else {
-        drawFrame(ctx, rec.currentTime, w, h, stopAt);
+        drawFrame(ctx, rec.currentTime, w, h, (stopFromClock && stopAt>0) ? stopAt : (startTime + exportDurationRef));
         const elapsed = rec.currentTime - startTime;
-        const denom = stopAt - startTime;
-        P.progress = denom>0 ? Math.round(elapsed/denom*100) : 0;
+        const denom = (stopFromClock && stopAt>0 ? stopAt : startTime + exportDurationRef) - startTime;
+        P.progress = denom>0 ? Math.min(99, Math.round(elapsed/denom*100)) : 0;
         $("ex-rec-pct").textContent = `RECORDING... ${P.progress}%`;
         $("ex-rec-bar").style.width = P.progress + "%";
         $("ex-rec-cur").textContent = formatTime(elapsed);
@@ -2867,7 +2943,6 @@ const exporterImpl = (() => {
       } else alert("Gagal mengukur durasi. Coba lagi.");
     });
   }
-  const webCodecsSupported = typeof VideoEncoder !== "undefined";
   function applyPreset(id){
     const PRESETS = {
       yt: { ratio:"16:9", q:"1080", fps:30, pos:"bottom" },
@@ -2888,8 +2963,9 @@ const exporterImpl = (() => {
     if (bgObjUrl){ URL.revokeObjectURL(bgObjUrl); bgObjUrl = null; }
     if (opts && typeof opts.dim === "number") P.bgDim = Math.max(0, Math.min(100, opts.dim));
     if (!file){ $("ex-bg-label").textContent = "Pilih Foto / Video"; syncPanel(); startPreviewLoop(); return; }
-    const kind = (file.type||"").startsWith("video") ? "video" : (file.type||"").startsWith("image") ? "image" : null;
-    if (!kind){ alert("Background harus file foto atau video"); return; }
+    const isVid = getMediaKind(file)==="video" || /\.(mp4|m4v|mov|webm|mkv|avi|ogv|mpg|mpeg|3gp|ts|mts|flv|wmv)$/i.test(file.name||"");
+    const kind = isVid ? "video" : (/^image\//.test(file.type||"") || /\.(png|jpe?g|webp|gif|avif|bmp)$/i.test(file.name||"")) ? "image" : null;
+    if (!kind){ alert("Background harus file foto atau video (yang ketrima: mp4/mov/webm/gif/png/jpg dll)"); return; }
     const u = URL.createObjectURL(file); bgObjUrl = u;
     if (kind === "image"){
       $("ex-bg-label").textContent = "Ganti (foto)";
@@ -2909,7 +2985,6 @@ const exporterImpl = (() => {
   }
   function syncPanel(){
     for (const b of $$("[data-preset]")) b.classList.toggle("on", b.dataset.preset===P.activePreset);
-    for (const b of $$("[data-expmode]")) b.classList.toggle("on", b.dataset.expmode===P.exportMode);
     for (const b of $$("[data-q]")) b.classList.toggle("on", b.dataset.q===P.quality);
     for (const b of $$("[data-fps]")) b.classList.toggle("on", +b.dataset.fps===P.fps);
     for (const b of $$("[data-tpos]")) b.classList.toggle("on", b.dataset.tpos===P.textPos);
@@ -2925,7 +3000,6 @@ const exporterImpl = (() => {
       }
     }
     for (const b of rBox.children){ b.classList.toggle("on", b.textContent===P.aspectRatio); }
-    $("tag-wc").textContent = webCodecsSupported ? "MP4" : "WEBM";
     $("ex-clip").classList.toggle("on", P.clipEnabled);
     $("ex-clip-opts").style.display = P.clipEnabled ? "flex" : "none";
     $("ex-fullclip").style.display = P.clipEnabled ? "" : "none";
@@ -2980,7 +3054,6 @@ const exporterImpl = (() => {
   function wire(){
     if (wired) return; wired = true;
     for (const b of $$("[data-preset]")) b.addEventListener("click", ()=>applyPreset(b.dataset.preset));
-    for (const b of $$("[data-expmode]")) b.addEventListener("click", ()=>{ P.exportMode = b.dataset.expmode; syncPanel(); });
     for (const b of $$("[data-q]")) b.addEventListener("click", ()=>{ P.quality = b.dataset.q; P.activePreset=""; syncPanel(); startPreviewLoop(); });
     for (const b of $$("[data-fps]")) b.addEventListener("click", ()=>{ P.fps = +b.dataset.fps; P.activePreset=""; syncPanel(); });
     for (const b of $$("[data-tpos]")) b.addEventListener("click", ()=>{ P.textPos = b.dataset.tpos; P.activePreset=""; syncPanel(); startPreviewLoop(); });
@@ -3004,6 +3077,12 @@ const exporterImpl = (() => {
       ev.target.value = "";
       if (f) setExportBg(f);
     });
+    (()=>{ const card=$("ex-bg-input").closest(".card");
+      card.addEventListener("dragover",(e)=>{e.preventDefault(); card.style.borderColor="var(--acid)";});
+      card.addEventListener("dragleave",()=>{card.style.borderColor="";});
+      card.addEventListener("drop",(e)=>{e.preventDefault(); card.style.borderColor="";
+        if (e.dataTransfer.files.length) setExportBg(e.dataTransfer.files[0]);});
+    })();
     $("ex-bg-clear").addEventListener("click", ()=>setExportBg(null));
     $("ex-bgDim").addEventListener("input", (ev)=>{ P.bgDim = +ev.target.value; $("v-exbgdim").textContent = P.bgDim; startPreviewLoop(); });
     $("ex-progressbar").addEventListener("click", ()=>{ P.showProgressBar = !P.showProgressBar; syncPanel(); startPreviewLoop(); });
@@ -3062,6 +3141,7 @@ const exporterImpl = (() => {
       finalSize = 0; finalDurStr = "";
     });
     $("ex-retry").addEventListener("click", ()=>setStatus("idle"));
+    $("ex-stop").addEventListener("click", ()=>{ try{ window._exportFinish && window._exportFinish(); }catch(err){} });
     $("ex-back").addEventListener("click", ()=>{
       if (P.status==="recording"){ try{ window._exportFinish && window._exportFinish(); }catch(err){} }
       cancelAnimationFrame(previewRaf);
