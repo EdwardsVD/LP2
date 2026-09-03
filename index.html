@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lyric Player v0.6.0 B2 · Vanilla</title>
+<title>Lyric Player v0.6.0 B3-fix · Vanilla</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Bungee&family=Comfortaa:wght@300;400;600;700&family=Fredoka:wght@300;400;500;600;700&family=Quicksand:wght@300;400;600;700&family=Archivo+Black&family=Bangers&family=Bebas+Neue&family=Caveat:wght@400;700&family=Comic+Neue:wght@400;700&family=Dancing+Script:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&family=Lora:wght@400;600;700&family=Merriweather:wght@400;700&family=Montserrat:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;600;700&family=Pacifico&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@400;600;700;800&family=Righteous&family=Roboto+Slab:wght@400;600;700&family=Rubik:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet" />
@@ -134,7 +134,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
   -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 13%,#000 87%,transparent 100%);
   mask-image:linear-gradient(to bottom,transparent 0,#000 13%,#000 87%,transparent 100%)}
 #fulltext.on{display:block}
-#fulltext-inner{padding:42vh 0;transition:transform 120ms cubic-bezier(.33,.9,.35,1);will-change:transform}
+#fulltext-inner{padding:42vh 0}
 .ft-line{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border-radius:10px;cursor:pointer;width:fit-content;max-width:92%;padding:8px 18px;margin:5px auto;transition:background-color .45s ease,opacity .45s ease,transform .45s cubic-bezier(.22,.68,.31,1.01);opacity:.5}
 .ft-line:hover{background:rgba(255,255,255,.08)!important}
 .ft-line.past{opacity:.28}
@@ -145,7 +145,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
 #media-el{position:absolute;left:-99999px;top:0;width:2px;height:2px;opacity:0;pointer-events:none}
 #media-el.video-on{left:auto;top:auto;width:auto;height:auto;opacity:1;position:static}
 #topbar{position:absolute;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;z-index:20;gap:10px;background:linear-gradient(180deg,rgba(5,5,5,.55),rgba(5,5,5,0))}
-#topbar .btn{background:rgba(10,10,10,.55);backdrop-filter:blur(6px)}
+#topbar .btn{background:rgba(10,10,10,.72)}
 #now-playing{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40vw}
 #toast{position:absolute;top:60px;left:50%;transform:translateX(-50%) translateY(-6px);z-index:60;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;background:var(--acid);color:#050505;padding:6px 14px;border-radius:6px;box-shadow:0 6px 24px rgba(0,0,0,.55),0 0 18px rgba(212,255,63,.25);opacity:0;pointer-events:none;transition:opacity .18s,transform .18s}
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -175,7 +175,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
 #lylist .it .tx{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* ---------- transport ---------- */
-#transport{position:absolute;left:0;right:0;bottom:0;z-index:20;background:rgba(5,5,5,.92);backdrop-filter:blur(8px)}
+#transport{position:absolute;left:0;right:0;bottom:0;z-index:20;background:rgba(5,8,16,.95)}
 #scrub{width:100%;height:28px;display:flex;align-items:flex-end;cursor:pointer;position:relative;user-select:none;touch-action:none}
 #scrub-track{width:100%;background:#1a1a1a;position:relative;height:3px;transition:height .12s}
 #scrub:hover #scrub-track,#scrub.drag #scrub-track{height:6px}
@@ -208,7 +208,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
 .ratechip.on{color:var(--acid)}
 
 /* ---------- editor modal ---------- */
-.modal{position:absolute;inset:0;z-index:50;background:rgba(5,5,5,.95);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:16px}
+.modal{position:absolute;inset:0;z-index:50;background:rgba(5,7,13,.96);display:none;align-items:center;justify-content:center;padding:16px}
 .modal.on{display:flex}
 .modal-box{width:100%;max-width:860px;max-height:90vh;display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden}
 .modal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
@@ -263,13 +263,13 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
 
 
 /* ==================== v0.6.0 B1 — MODE & LYRIC CARD ==================== */
-#mode-seg{display:flex;gap:3px;padding:4px;background:rgba(10,10,10,.55);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:999px}
+#mode-seg{display:flex;gap:3px;padding:4px;background:rgba(8,14,28,.82);border:1px solid var(--line);border-radius:999px}
 #mode-seg .chip{border:none;background:transparent;padding:6px 12px;border-radius:999px;transition:background-color .18s,color .18s,transform .12s}
 #mode-seg .chip:hover{transform:translateY(-1px)}
 #mode-seg .chip.on{background:var(--acid);color:#050505;font-weight:800}
 #card-holder{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;z-index:12;pointer-events:none;padding:64px 16px 150px}
 .lc-wrap{pointer-events:auto;width:min(740px,94vw)}
-.lc-box{background:rgba(12,18,42,.82);backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:26px 28px 20px;box-shadow:0 26px 90px rgba(0,0,0,.6),0 2px 10px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.14);color:#fff;transition:background-color .25s,border-radius .25s}
+.lc-box{background:linear-gradient(180deg, rgba(15,24,52,.93), rgba(9,14,32,.95));border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:26px 28px 20px;box-shadow:0 26px 90px rgba(0,0,0,.6),0 2px 10px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.14);color:#fff;transition:background-color .25s,border-radius .25s}
 .lc-top{display:flex;gap:18px;align-items:flex-start}
 #lc-cover{width:clamp(64px,12vw,104px);aspect-ratio:1/1;border-radius:10px;flex:none;overflow:hidden;background:linear-gradient(145deg,#232c4e,#0a0f1e);display:flex;align-items:center;justify-content:center;font-size:30px;cursor:pointer;border:1px solid rgba(255,255,255,.14);transition:transform .2s,box-shadow .2s}
 #lc-cover:hover{transform:scale(1.03);box-shadow:0 6px 22px rgba(0,0,0,.45)}
@@ -285,7 +285,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
 .lc-bottom{display:flex;align-items:center;gap:10px;margin-top:16px;font-family:var(--mono);font-size:11px;color:rgba(207,214,230,.9)}
 .lc-bar{flex:1;height:5px;border-radius:99px;background:rgba(255,255,255,.2);overflow:hidden}
 .lc-bar i{display:block;height:100%;width:0%;background:var(--acid);border-radius:99px;transition:width .12s linear;box-shadow:0 0 10px rgba(212,255,63,.55)}
-#lc-tools .btn{background:rgba(10,10,10,.5);backdrop-filter:blur(6px)}
+#lc-tools .btn{background:rgba(8,14,28,.78)}
 /* ---- bawah air ---- */
 #stage.uw #fulltext{animation:uwtide 7.2s ease-in-out infinite}
 #stage.uw .lc-wrap{animation:uwsay 7.6s ease-in-out infinite}
@@ -302,7 +302,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
 :root{--navy:#081226; --navy2:#0c1b3a; --blue-glass:rgba(15,32,66,.62); --blue-line:rgba(96,150,255,.24); --blue-glow:rgba(78,168,255,.16)}
 html,body{background:radial-gradient(1250px 700px at 14% -12%, #10295c 0%, rgba(5,7,13,0) 58%), radial-gradient(900px 520px at 94% 4%, rgba(24,58,128,.28) 0%, rgba(5,7,13,0) 55%), #05070d}
 #scr-setup{background:radial-gradient(1100px 620px at 50% -12%, rgba(23,52,110,.55) 0%, rgba(5,7,13,0) 62%)}
-.setup-head{display:inline-flex;align-items:center;gap:10px;background:var(--blue-glass);border:1px solid var(--blue-line);border-radius:999px;padding:8px 18px;backdrop-filter:blur(8px);color:var(--blue);letter-spacing:.24em;margin-top:8px}
+.setup-head{display:inline-flex;align-items:center;gap:10px;background:var(--blue-glass);border:1px solid var(--blue-line);border-radius:999px;padding:8px 18px;color:var(--blue);letter-spacing:.24em;margin-top:8px}
 .setup-head .dim{color:var(--dim2)}
 .setup-title{position:relative;padding-bottom:10px}
 .setup-title::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(340px,60%);height:3px;border-radius:99px;background:linear-gradient(90deg,rgba(212,255,63,0),var(--acid),rgba(78,168,255,.85),rgba(212,255,63,0));box-shadow:0 0 18px rgba(212,255,63,.35),0 0 34px rgba(78,168,255,.28)}
@@ -319,10 +319,11 @@ html,body{background:radial-gradient(1250px 700px at 14% -12%, #10295c 0%, rgba(
 #tcontrols{background:linear-gradient(180deg, rgba(5,8,16,0), rgba(6,12,26,.9))}
 input.field,select.field{background:rgba(7,14,30,.85);border-color:rgba(96,150,255,.24)}
 #drop-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:14;pointer-events:none}
-#stage.uw #bg-img,#stage.uw #bg-video{filter:url(#uwfx-soft)}
 #stage.uw .lyric-layer,#stage.uw #fulltext-inner,#stage.uw .lc-box{filter:url(#uwfx-rippier)}
 #stage.uw .lc-box{box-shadow:0 26px 90px rgba(0,0,0,.6),0 0 0 1px rgba(140,200,255,.12) inset}
-#drop-toggle-row{}
+#stage.uw #bg-img,#stage.uw #bg-video{animation:uwbgy 9s ease-in-out infinite}
+@keyframes uwbgy{0%,100%{transform:scale(1.02) translate(0,3px)}50%{transform:scale(1.02) translate(0,-3px)}}
+#stage.nofx .lyric-layer,#stage.nofx #fulltext-inner,#stage.nofx .lc-box{filter:none!important}
 /* compact lyric card */
 #lc-line{min-height:1.45em;margin-top:2px}
 .lc-bottom{margin-top:12px}
@@ -348,23 +349,15 @@ input.field,select.field{background:rgba(7,14,30,.85);border-color:rgba(96,150,2
 <body>
 <svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true"><defs>
 <filter id="uwfx-rippier" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
-  <feTurbulence type="fractalNoise" baseFrequency="0.012 0.036" numOctaves="2" seed="7" result="nz">
-    <animate attributeName="baseFrequency" dur="11s" values="0.012 0.036;0.018 0.052;0.012 0.036" repeatCount="indefinite"/>
-  </feTurbulence>
+  <feTurbulence id="uw-turb" type="fractalNoise" baseFrequency="0.012 0.036" numOctaves="2" seed="7" result="nz"/>
   <feDisplacementMap in="SourceGraphic" in2="nz" scale="9" xChannelSelector="R" yChannelSelector="G"/>
-</filter>
-<filter id="uwfx-soft" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
-  <feTurbulence type="fractalNoise" baseFrequency="0.008 0.02" numOctaves="2" seed="3" result="nz2">
-    <animate attributeName="baseFrequency" dur="15s" values="0.008 0.02;0.012 0.03;0.008 0.02" repeatCount="indefinite"/>
-  </feTurbulence>
-  <feDisplacementMap in="SourceGraphic" in2="nz2" scale="5" xChannelSelector="R" yChannelSelector="G"/>
 </filter>
 </defs></svg>
 <div id="app">
 
 <!-- ==================== SETUP ==================== -->
 <section id="scr-setup" class="screen on">
-  <div class="setup-head">Lyric Player <span class="dim">v0.6.0 · B2 — 3 mode: Karaoke / Lyric / Lyric Card</span></div>
+  <div class="setup-head">Lyric Player <span class="dim">v0.6.0 · B3-fix — 3 mode + performa diselat</span></div>
   <h1 class="setup-title">Masukin lagu &amp; lirik</h1>
   <div id="session-banner" class="session-banner" style="display:none">
     <div>
@@ -1422,43 +1415,55 @@ function dropsArr(){
   }
   return _DROPS_ARR;
 }
+let _dropSpr = null;
+function dropSprites(){
+  if (_dropSpr) return _dropSpr;
+  const mk = (R) => {
+    const c = document.createElement("canvas");
+    const side = Math.ceil(R*2.9)+4;
+    c.width = side; c.height = Math.ceil(side*1.22);
+    const g = c.getContext("2d");
+    if (g){
+      const x = c.width/2, y = c.height/2;
+      const rg = g.createRadialGradient(x-R*0.35, y-R*0.45, R*0.12, x, y, R*1.15);
+      rg.addColorStop(0,"rgba(255,255,255,0.85)");
+      rg.addColorStop(0.32,"rgba(205,232,255,0.30)");
+      rg.addColorStop(0.72,"rgba(120,170,230,0.16)");
+      rg.addColorStop(1,"rgba(6,12,26,0.30)");
+      g.fillStyle = rg;
+      g.beginPath(); g.ellipse(x, y, R, R*1.12, 0, 0, Math.PI*2); g.fill();
+      g.fillStyle = "rgba(255,255,255,0.55)";
+      g.beginPath(); g.arc(x-R*0.32, y-R*0.42, Math.max(0.6,R*0.16), 0, Math.PI*2); g.fill();
+    }
+    return c;
+  };
+  _dropSpr = { big: mk(13), small: mk(3.4) };
+  return _dropSpr;
+}
 function drawDropsArr(ctx, w, h, T){
   const arr = dropsArr();
-  const sc = Math.max(0.6, Math.min(2, h/720));
-  ctx.save();
+  const spr = dropSprites();
+  const sc = Math.max(0.5, Math.min(2, h/720));
   for (const dp of arr){
-    let x = dp.x*w, y, r = dp.r*sc;
+    let x = dp.x*w, y, r;
     if (dp.big){
       const fall = ((dp.y0 + T*dp.v) % 1.18);
       y = fall*(h*1.1) - h*0.05;
       x += Math.sin(fall*26 + dp.ph)*dp.wob*sc;
-      r *= 1 + 0.18*Math.sin(T*2.4+dp.ph);
-      const tl = r*7.5;
-      const tg = ctx.createLinearGradient(x, y-tl, x, y);
-      tg.addColorStop(0, "rgba(190,225,255,0)");
-      tg.addColorStop(1, "rgba(190,225,255,0.16)");
-      ctx.fillStyle = tg;
-      ctx.fillRect(x - r*0.38, Math.max(-2, y-tl), r*0.76, tl);
+      r = dp.r*1.55*sc;
+      ctx.fillStyle = "rgba(190,225,255,0.10)";
+      ctx.fillRect(x - r*0.16, Math.max(-2, y - r*7), r*0.32, r*6.2);
+      if (y < -40 || y > h+40) continue;
+      const sw = r*2.9;
+      ctx.drawImage(spr.big, x - sw/2, y - sw*0.61, sw, sw*1.21);
     } else {
       y = dp.y0*h + Math.sin(T*0.55 + dp.ph)*1.4*sc;
       x += Math.sin(T*0.3 + dp.ph*2)*0.8*sc;
+      if (y < -12 || y > h+12) continue;
+      const sw = (7 + 6*dp.r)*sc;
+      ctx.drawImage(spr.small, x - sw/2, y - sw*0.61, sw, sw*1.22);
     }
-    if (y < -30 || y > h+30) continue;
-    const g = ctx.createRadialGradient(x - r*0.35, y - r*0.45, r*0.12, x, y, r*1.15);
-    g.addColorStop(0, "rgba(255,255,255,0.85)");
-    g.addColorStop(0.32, "rgba(205,232,255,0.30)");
-    g.addColorStop(0.72, "rgba(120,170,230,0.16)");
-    g.addColorStop(1, "rgba(6,12,26,0.30)");
-    ctx.fillStyle = g;
-    ctx.beginPath();
-    ctx.ellipse(x, y, r, r*1.12, 0, 0, Math.PI*2);
-    ctx.fill();
-    ctx.fillStyle = "rgba(255,255,255,0.55)";
-    ctx.beginPath();
-    ctx.arc(x - r*0.32, y - r*0.42, Math.max(0.5, r*0.16), 0, Math.PI*2);
-    ctx.fill();
   }
-  ctx.restore();
 }
 function wrapLines(ctx, text, maxWidth){
   const paragraphs = String(text==null?"":text).split("\n");
@@ -1876,16 +1881,18 @@ const player = (() => {
     hold.style.display = isCard ? "flex" : "none";
     if (!isCard) return;
     const cd = S.card, wrap = $("lc-wrap"), box = $("lc-box");
-    wrap.style.zoom = String((cd.scale||100)/100);
-    box.style.borderRadius = (typeof cd.radius==="number"?cd.radius:22)+"px";
-    box.style.background = hexToRgba(cd.bgColor, (typeof cd.bgAlpha==="number"?cd.bgAlpha:78)/100);
-    box.style.fontFamily = cardFontStack();
+    const gset = (el, prop, v) => { if (el && el.style[prop] !== v) el.style[prop] = v; };
+    const tset = (el, v) => { if (el && el.textContent !== v) el.textContent = v; };
+    gset(wrap, "zoom", String((cd.scale||100)/100));
+    gset(box, "borderRadius", (typeof cd.radius==="number"?cd.radius:22)+"px");
+    gset(box, "background", hexToRgba(cd.bgColor, (typeof cd.bgAlpha==="number"?Math.max(cd.bgAlpha,86):90)/100));
+    gset(box, "fontFamily", cardFontStack());
     const ln = $("lc-line");
-    ln.style.color = cd.color||"#ffffff";
-    $("lc-app").textContent = cd.appName||"";
-    $("lc-app").style.display = cd.appName ? "block" : "none";
-    $("lc-title").textContent = cd.title || (S.audioFile ? S.audioFile.name.replace(/\.[^.]+$/,"") : "Untitled");
-    $("lc-artist").textContent = cd.artist || "—";
+    gset(ln, "color", cd.color||"#ffffff");
+    tset($("lc-app"), cd.appName||"");
+    gset($("lc-app"), "display", cd.appName ? "block" : "none");
+    tset($("lc-title"), cd.title || (S.audioFile ? S.audioFile.name.replace(/\.[^.]+$/,"") : "Untitled"));
+    tset($("lc-artist"), cd.artist || "—");
     const vi = visibleIdx();
     const txt = vi>=0 ? displayText(S.lyrics[vi].text, true) : "";
     const key = String(vi)+"|"+txt+"|"+animKey;
@@ -1922,6 +1929,7 @@ const player = (() => {
       S.style.uppercase, S.effects.fullTextTime, S.effects.zeroEmoji, ftDirty].join("|");
     if (inner.dataset.sig !== sig){
       inner.dataset.sig = sig;
+      inner._geo = null; inner._vpH = 0;
       inner.textContent = "";
       S.lyrics.forEach((l,i) => {
         const d = el("div","ft-line"); d.dataset.line = String(i);
@@ -1952,7 +1960,19 @@ const player = (() => {
     if (!S.effects.fullText || !vp.classList.contains("on") || !inner.children.length) return;
     const now = (media ? media.currentTime : 0) + S.offset/1000;
     const idx = lyricAt(now);
-    const center = (elm) => elm.offsetTop + elm.offsetHeight/2;
+    if (!window.__ftResizeHooked && typeof window!=="undefined"){
+      window.__ftResizeHooked = 1;
+      window.addEventListener("resize", ()=>{ const inn = $("fulltext-inner"); if (inn){ inn._geo = null; inn._vpH = 0; } });
+    }
+    let geo = inner._geo;
+    if (!geo || geo.n !== inner.children.length || geo.fs !== S.style.fontSize){
+      geo = { n: inner.children.length, fs: S.style.fontSize, c: [] };
+      for (let gi=0; gi<inner.children.length; gi++){ const elz = inner.children[gi]; geo.c.push(elz.offsetTop + elz.offsetHeight/2); }
+      inner._geo = geo;
+      inner._vpH = vp.clientHeight || 500;
+    }
+    const vpH = inner._vpH || (inner._vpH = vp.clientHeight || 500);
+    const center = (elm) => { const gi = Array.prototype.indexOf.call(inner.children, elm); return (geo.c && gi>=0 && geo.c[gi]!==undefined) ? geo.c[gi] : (elm.offsetTop + elm.offsetHeight/2); };
     let nextIdx = idx>=0 ? idx+1 : 0;
     if (nextIdx >= S.lyrics.length) nextIdx = -1;
     const curEl  = (idx>=0 && idx<inner.children.length) ? inner.children[idx] : null;
@@ -1968,7 +1988,7 @@ const player = (() => {
     } else if (curEl) targetY = center(curEl);
     else if (nextEl) targetY = center(nextEl);
     if (targetY === null) targetY = 0;
-    const y = targetY - vp.clientHeight/2;
+    const y = targetY - vpH/2;
     inner.style.transform = `translateY(${-Math.max(0,y)}px)`;
     const vi = visibleIdx();
     if (vi !== ftLastIdx){
@@ -1983,10 +2003,46 @@ const player = (() => {
       if ($("lylist").classList.contains("on")) paintLyList();
     }
   }
+  let _perfEma = 0, _perfBad = 0, _perfDone = false, _perfWarm = 0;
+  function perfSample(ms){
+    if (_perfDone || !ms || ms<0) return;
+    const now = Date.now();
+    if (!_perfWarm){ _perfWarm = now; return; }
+    if (now - _perfWarm < 2500) return;
+    _perfEma = _perfEma ? _perfEma*0.88 + ms*0.12 : ms;
+    if (_perfEma > 11){
+      if (!_perfBad) _perfBad = now;
+      else if (now - _perfBad > 1500){
+        _perfDone = true;
+        $("stage").classList.add("nofx");
+        uwTickersOff();
+        notify("⚡ Mode hemat aktif otomatis — riak berat dimatiin biar FPS aman. Goyang ringan tetep jalan.");
+      }
+    } else _perfBad = 0;
+  }
+  let _uwTimer = 0, _uwPhase = 1.7;
+  function uwTickersOn(){
+    if (_uwTimer || _perfDone) return;
+    _uwTimer = setInterval(()=>{
+      _uwPhase += 0.14;
+      const fx = 0.012 + 0.006*(0.5+0.5*Math.sin(_uwPhase*0.9));
+      const fy = 0.036 + 0.016*(0.5+0.5*Math.sin(_uwPhase*0.62+1.7));
+      const tu = $("uw-turb");
+      if (tu) tu.setAttribute("baseFrequency", fx.toFixed(4)+" "+fy.toFixed(4));
+    }, 120);
+  }
+  function uwTickersOff(){ if (_uwTimer){ clearInterval(_uwTimer); _uwTimer = 0; } }
   function ftStartLoop(){
     cancelAnimationFrame(ftRaf);
     if (!S.effects.fullText) return;
-    const loop = () => { ftUpdateMotion(); ftRaf = requestAnimationFrame(loop); };
+    const loop = () => {
+      if (S.screen==="player"){
+        const _w0 = (typeof performance!=="undefined" ? performance.now() : 0);
+        ftUpdateMotion();
+        if (_w0) perfSample((typeof performance!=="undefined" ? performance.now() : 0) - _w0);
+      }
+      ftRaf = requestAnimationFrame(loop);
+    };
     ftRaf = requestAnimationFrame(loop);
   }
   function ftStopLoop(){ cancelAnimationFrame(ftRaf); ftRaf = 0; }
@@ -2006,6 +2062,7 @@ const player = (() => {
     window.addEventListener("resize", resize);
     if (particles.length === 0) particles = Array.from({length:S.effects.particleCount}, ()=>createParticle(cv.width,cv.height));
     const animate = () => {
+      if (S.screen!=="player"){ ptRaf = requestAnimationFrame(animate); return; }
       ctx.clearRect(0,0,cv.width,cv.height);
       particles = particles.map(p => updateParticle(p, cv.width, cv.height));
       particles.forEach(p => {
@@ -2052,6 +2109,7 @@ const player = (() => {
     cv.style.height = (typeof S.effects.waveformHeight==="number" ? S.effects.waveformHeight : 90) + "px";
     const draw = () => {
       waveRaf = requestAnimationFrame(draw);
+      if (S.screen!=="player") return;
       const dpr = Math.min(2, window.devicePixelRatio || 1);
       const W = Math.max(2, Math.round(cv.clientWidth*dpr));
       const H = Math.max(2, Math.round(cv.clientHeight*dpr));
@@ -2146,7 +2204,6 @@ const player = (() => {
       triggerOut(fadingIndex);
     }
     renderLyric();
-    paintTransport();
     if (refVideoActive()) syncVideo();
   }
   function setCurrentTime(t){ scrubTime = t; paintTransport(); }
@@ -2432,20 +2489,23 @@ const player = (() => {
     if (!S.effects.drops){ cv.style.display = "none"; return; }
     cv.style.display = "block";
     const stg = $("lyric-stage");
-    const loop = () => {
+    let _dT0 = 0;
+    const loop = (ts) => {
       if (!S.effects.drops){ stopDrops(); return; }
-      const W = Math.max(64, stg.clientWidth || document.documentElement.clientWidth || (typeof window!=="undefined" && window.innerWidth) || 1280);
-      const H = Math.max(64, stg.clientHeight || document.documentElement.clientHeight || (typeof window!=="undefined" && window.innerHeight) || 720);
-      if (cv.width !== W || cv.height !== H){ cv.width = W; cv.height = H; }
-      const g = cv.getContext("2d");
-      if (g){
-        g.clearRect(0,0,W,H);
-        const fog = g.createLinearGradient(0,0,0,H);
-        fog.addColorStop(0,"rgba(170,210,255,0.05)");
-        fog.addColorStop(0.5,"rgba(170,210,255,0.015)");
-        fog.addColorStop(1,"rgba(170,210,255,0.05)");
-        g.fillStyle = fog; g.fillRect(0,0,W,H);
-        drawDropsArr(g, W, H, (typeof performance!=="undefined" ? performance.now() : Date.now())/1000);
+      if (S.screen!=="player"){ dropRaf = requestAnimationFrame(loop); return; }
+      if (!(ts && _dT0 && ts-_dT0 < 31)){
+        _dT0 = ts||0;
+        const _w0 = (typeof performance!=="undefined" ? performance.now() : 0);
+        const W = Math.max(64, stg.clientWidth || document.documentElement.clientWidth || (typeof window!=="undefined" && window.innerWidth) || 1280);
+        const H = Math.max(64, stg.clientHeight || document.documentElement.clientHeight || (typeof window!=="undefined" && window.innerHeight) || 720);
+        if (cv.width !== W || cv.height !== H){ cv.width = W; cv.height = H; }
+        const g = cv.getContext("2d");
+        if (g){
+          g.clearRect(0,0,W,H);
+          g.fillStyle = "rgba(160,205,255,0.028)"; g.fillRect(0,0,W,H);
+          drawDropsArr(g, W, H, (typeof performance!=="undefined" ? performance.now() : Date.now())/1000);
+        }
+        if (_w0) perfSample((typeof performance!=="undefined" ? performance.now() : 0) - _w0);
       }
       dropRaf = requestAnimationFrame(loop);
     };
@@ -2462,6 +2522,7 @@ const player = (() => {
 
   function afterSettings(){
     $("stage").classList.toggle("uw", !!S.effects.underwater);
+    if (S.effects.underwater && S.screen==="player") uwTickersOn(); else uwTickersOff();
     if (S.effects.drops) dropsLoop(); else stopDrops();
     if (S.effects.fullText) ftStartLoop(); else ftStopLoop();
     renderLyric(true);
@@ -2600,7 +2661,7 @@ const player = (() => {
     $("btn-settings").addEventListener("click", ()=>{ $("settings").classList.toggle("on"); $("btn-settings").classList.toggle("solid", $("settings").classList.contains("on")); });
     for (const b of $$("[data-mode]")) b.addEventListener("click", ()=> setMode(b.dataset.mode));
     for (const op of $$("select#cd-font option")){ if (op.value) op.style.fontFamily = `"${op.value}", sans-serif`; }
-    $("ef-underwater").addEventListener("click", ()=>{ S.effects.underwater = !S.effects.underwater; $("stage").classList.toggle("uw", !!S.effects.underwater); settingsSyncAll(); markDirty(); });
+    $("ef-underwater").addEventListener("click", ()=>{ S.effects.underwater = !S.effects.underwater; $("stage").classList.toggle("uw", !!S.effects.underwater); if (S.effects.underwater) uwTickersOn(); else uwTickersOff(); settingsSyncAll(); markDirty(); });
     $("ef-drops").addEventListener("click", ()=>{ S.effects.drops = !S.effects.drops; if (S.effects.drops) dropsLoop(); else stopDrops(); settingsSyncAll(); markDirty(); });
     st("cd-font").addEventListener("change", (ev)=>{ S.card.font = ev.target.value; settingsSyncAll(); paintCard(); markDirty(); });
     [["cd-scale","scale"],["cd-radius","radius"],["cd-alpha","bgAlpha"]].forEach(pair=>{
@@ -2946,7 +3007,7 @@ const player = (() => {
   function leave(stopAll){
     window.removeEventListener("keydown", keyHandler);
     clearInterval(refSyncTimer);
-    stopParticles(); stopWaveform(); stopDrops();
+    stopParticles(); stopWaveform(); stopDrops(); uwTickersOff();
     if (media){ try{ media.pause(); }catch(err){} }
     try{ $("ref-video").pause(); }catch(err){}
     try{ $("bg-video").pause(); }catch(err){}
@@ -3314,7 +3375,11 @@ const exporterImpl = (() => {
       const anchor = (anchorIdx>=0 && S.lyrics[anchorIdx]) ? S.lyrics[anchorIdx] : (S.lyrics[0] || {time: previewTime});
       const cycleMs = Math.max(1200, (P.animSpeed||300) + 900);
       const t0 = (typeof performance!=="undefined" ? performance.now() : Date.now());
+      let _pvAlt = 0;
       const loop = () => {
+        if (S.screen!=="export"){ previewRaf = requestAnimationFrame(loop); return; }
+        _pvAlt = (_pvAlt+1)%2;
+        if (_pvAlt){ previewRaf = requestAnimationFrame(loop); return; }
         const now = (typeof performance!=="undefined" ? performance.now() : Date.now());
         const phase = ((now - t0) % cycleMs) / 1000;
         let t = anchor.time - S.offset/1000 + phase;
