@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lyric Player v0.6.0 B1 · Vanilla</title>
+<title>Lyric Player v0.6.0 B2 · Vanilla</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Bungee&family=Comfortaa:wght@300;400;600;700&family=Fredoka:wght@300;400;500;600;700&family=Quicksand:wght@300;400;600;700&family=Archivo+Black&family=Bangers&family=Bebas+Neue&family=Caveat:wght@400;700&family=Comic+Neue:wght@400;700&family=Dancing+Script:wght@400;700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;700&family=Lora:wght@400;600;700&family=Merriweather:wght@400;700&family=Montserrat:wght@400;600;700;800&family=Nunito:wght@400;600;700;800&family=Oswald:wght@400;600;700&family=Pacifico&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@400;600;700;800&family=Righteous&family=Roboto+Slab:wght@400;600;700&family=Rubik:wght@400;600;700&family=Space+Grotesk:wght@400;500;700&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet" />
@@ -287,7 +287,6 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
 .lc-bar i{display:block;height:100%;width:0%;background:var(--acid);border-radius:99px;transition:width .12s linear;box-shadow:0 0 10px rgba(212,255,63,.55)}
 #lc-tools .btn{background:rgba(10,10,10,.5);backdrop-filter:blur(6px)}
 /* ---- bawah air ---- */
-#stage.uw .lyric-layer,#stage.uw #fulltext-inner,#stage.uw .lc-box{filter:url(#uwfx)}
 #stage.uw #fulltext{animation:uwtide 7.2s ease-in-out infinite}
 #stage.uw .lc-wrap{animation:uwsay 7.6s ease-in-out infinite}
 #stage.uw .lyric-layer{animation:uwdrift 6.4s ease-in-out infinite}
@@ -298,6 +297,36 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
   #stage.uw .lyric-layer,#stage.uw #fulltext,#stage.uw .lc-wrap{animation:none}
   #stage.uw .lyric-layer,#stage.uw #fulltext-inner,#stage.uw .lc-box{filter:none}
 }
+
+/* ==================== v0.6.0 B2 — TEMA "MIDNIGHT AQUA" + DROP FX ==================== */
+:root{--navy:#081226; --navy2:#0c1b3a; --blue-glass:rgba(15,32,66,.62); --blue-line:rgba(96,150,255,.24); --blue-glow:rgba(78,168,255,.16)}
+html,body{background:radial-gradient(1250px 700px at 14% -12%, #10295c 0%, rgba(5,7,13,0) 58%), radial-gradient(900px 520px at 94% 4%, rgba(24,58,128,.28) 0%, rgba(5,7,13,0) 55%), #05070d}
+#scr-setup{background:radial-gradient(1100px 620px at 50% -12%, rgba(23,52,110,.55) 0%, rgba(5,7,13,0) 62%)}
+.setup-head{display:inline-flex;align-items:center;gap:10px;background:var(--blue-glass);border:1px solid var(--blue-line);border-radius:999px;padding:8px 18px;backdrop-filter:blur(8px);color:var(--blue);letter-spacing:.24em;margin-top:8px}
+.setup-head .dim{color:var(--dim2)}
+.setup-title{position:relative;padding-bottom:10px}
+.setup-title::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(340px,60%);height:3px;border-radius:99px;background:linear-gradient(90deg,rgba(212,255,63,0),var(--acid),rgba(78,168,255,.85),rgba(212,255,63,0));box-shadow:0 0 18px rgba(212,255,63,.35),0 0 34px rgba(78,168,255,.28)}
+.dz{border:1px dashed rgba(96,150,255,.4);background:linear-gradient(180deg, rgba(14,29,62,.55), rgba(8,15,32,.55));border-radius:12px}
+.dz:hover{border-color:rgba(212,255,63,.55);box-shadow:0 0 0 1px rgba(212,255,63,.18),0 10px 34px rgba(78,168,255,.14);background:linear-gradient(180deg, rgba(19,38,78,.65), rgba(9,17,36,.6))}
+.dz.on{border-style:solid;border-color:var(--acid);background:linear-gradient(180deg, rgba(26,50,96,.7), rgba(10,18,38,.7));box-shadow:0 0 0 1px rgba(212,255,63,.22),0 14px 40px rgba(0,0,0,.4)}
+#session-banner{background:linear-gradient(180deg, rgba(21,44,88,.75), rgba(11,22,48,.75));border:1px solid var(--blue-line);border-radius:12px}
+.card{background:linear-gradient(180deg, rgba(13,26,54,.72), rgba(8,14,30,.86));border-color:rgba(96,150,255,.18)}
+#settings,.panel{background:linear-gradient(180deg, rgba(10,21,44,.95), rgba(6,12,26,.96));border-color:var(--blue-line)}
+.btn{border-color:rgba(96,150,255,.3)}
+#topbar .btn{background:rgba(9,19,42,.6);border-color:rgba(96,150,255,.26)}
+#mode-seg{background:rgba(9,19,42,.6);border-color:rgba(96,150,255,.3)}
+.ghost-btn{border-color:rgba(96,150,255,.3)}
+#tcontrols{background:linear-gradient(180deg, rgba(5,8,16,0), rgba(6,12,26,.9))}
+input.field,select.field{background:rgba(7,14,30,.85);border-color:rgba(96,150,255,.24)}
+#drop-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:14;pointer-events:none}
+#stage.uw #bg-img,#stage.uw #bg-video{filter:url(#uwfx-soft)}
+#stage.uw .lyric-layer,#stage.uw #fulltext-inner,#stage.uw .lc-box{filter:url(#uwfx-rippier)}
+#stage.uw .lc-box{box-shadow:0 26px 90px rgba(0,0,0,.6),0 0 0 1px rgba(140,200,255,.12) inset}
+#drop-toggle-row{}
+/* compact lyric card */
+#lc-line{min-height:1.45em;margin-top:2px}
+.lc-bottom{margin-top:12px}
+.lc-box{padding:22px 24px 16px}
 @media (max-width:760px){
   #mode-seg .chip{padding:5px 9px;font-size:9px}
   #card-holder{padding:96px 10px 130px}
@@ -318,18 +347,24 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true"><defs>
-<filter id="uwfx" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
+<filter id="uwfx-rippier" x="-12%" y="-12%" width="124%" height="124%" color-interpolation-filters="sRGB">
   <feTurbulence type="fractalNoise" baseFrequency="0.012 0.036" numOctaves="2" seed="7" result="nz">
     <animate attributeName="baseFrequency" dur="11s" values="0.012 0.036;0.018 0.052;0.012 0.036" repeatCount="indefinite"/>
   </feTurbulence>
   <feDisplacementMap in="SourceGraphic" in2="nz" scale="9" xChannelSelector="R" yChannelSelector="G"/>
+</filter>
+<filter id="uwfx-soft" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
+  <feTurbulence type="fractalNoise" baseFrequency="0.008 0.02" numOctaves="2" seed="3" result="nz2">
+    <animate attributeName="baseFrequency" dur="15s" values="0.008 0.02;0.012 0.03;0.008 0.02" repeatCount="indefinite"/>
+  </feTurbulence>
+  <feDisplacementMap in="SourceGraphic" in2="nz2" scale="5" xChannelSelector="R" yChannelSelector="G"/>
 </filter>
 </defs></svg>
 <div id="app">
 
 <!-- ==================== SETUP ==================== -->
 <section id="scr-setup" class="screen on">
-  <div class="setup-head">Lyric Player <span class="dim">v0.6.0 · B1 — 3 mode: Karaoke / Lyric / Lyric Card</span></div>
+  <div class="setup-head">Lyric Player <span class="dim">v0.6.0 · B2 — 3 mode: Karaoke / Lyric / Lyric Card</span></div>
   <h1 class="setup-title">Masukin lagu &amp; lirik</h1>
   <div id="session-banner" class="session-banner" style="display:none">
     <div>
@@ -414,6 +449,7 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
     <div id="ref-box"><span class="lbl" id="ref-label">Reference</span><div id="media-wrap"></div><video id="ref-video" muted playsinline preload="auto"></video></div>
 
     <div id="lyric-stage">
+      <canvas id="drop-canvas" style="display:none"></canvas>
       <img id="bg-img" alt="" style="display:none" />
       <video id="bg-video" style="display:none" autoplay loop muted playsinline></video>
       <div id="bg-dim"></div>
@@ -576,8 +612,12 @@ hr.sep{border:none;border-top:1px solid var(--line);margin:4px 0}
             <button class="toggle" id="ef-zeroEmoji"></button>
           </div>
           <div class="switch-row card">
-            <div><div class="lbl" style="margin:0;color:var(--acid)">💧 Efek Bawah Air</div><div class="switch-row sub">Teks / card kayak keliatan dari bawah air yang lagi ngalir — riak + goyang pelan. Auto ikut di render video export juga.</div></div>
+            <div><div class="lbl" style="margin:0;color:var(--acid)">💧 Efek Bawah Air</div><div class="switch-row sub">Teks / card / frame keliatan dari bawah air yang ngalir — riak displacement (di export pakai riak baris-per-baris yang sama), goyang pelan + kilau cahaya. Ikut ke-render di video.</div></div>
             <button class="toggle" id="ef-underwater"></button>
+          </div>
+          <div class="switch-row card">
+            <div><div class="lbl" style="margin:0;color:var(--acid)">🌧️ Embun &amp; Tetesan di Kaca</div><div class="switch-row sub">Kayak ngeliatin card dari kaca abis kehujanan — buliran air netes ke bawah + jejaknya. Ikut ke-render di video export juga.</div></div>
+            <button class="toggle" id="ef-drops"></button>
           </div>
           <div class="card">
             <div class="card-title">🎴 Lyric Card (mode card)</div>
@@ -945,9 +985,9 @@ const defaultStyle = { fontSize:42, bold:true, italic:false, underline:false, up
 const defaultEffects = { particles:false, particleCount:30, particleColor:"#d4ff3f",
   glow:false, glowColor:"#d4ff3f", glowIntensity:20,
   gradientText:false, gradientColors:["#d4ff3f","#00ff88"],
-  zeroEmoji:false, gapClear:5,
+  zeroEmoji:true, gapClear:5,
   waveform:false, waveformStyle:"bars", waveformHeight:90, waveformColor:"#d4ff3f",
-  fullText:false, fullTextTime:true, underwater:false };
+  fullText:false, fullTextTime:true, underwater:false, drops:false };
 const defaultCard = { title:"", artist:"", appName:"Faptalyrics", font:"Fredoka",
   scale:100, radius:22, bgAlpha:78, color:"#ffffff", bgColor:"#0c122a",
   cut:{ enabled:false, start:0, end:0 } };
@@ -1360,6 +1400,64 @@ function drawCoverAt(ctx, img, x, y, w, h){
   ctx.save();
   ctx.beginPath(); ctx.rect(x,y,w,h); ctx.clip();
   ctx.drawImage(img, x+(w-dw)/2, y+(h-dh)/2, dw, dh);
+  ctx.restore();
+}
+function srand(i){ const x = Math.sin(i*127.1 + 311.7) * 43758.5453; return x - Math.floor(x); }
+let _DROPS_ARR = null;
+function dropsArr(){
+  if (!_DROPS_ARR){
+    _DROPS_ARR = [];
+    for (let i=0;i<74;i++){
+      const big = srand(i*3.7) > 0.42;
+      _DROPS_ARR.push({
+        x: 0.02 + 0.96*srand(i*3+1),
+        y0: srand(i*3+2),
+        r: big ? 2.6 + 4.6*srand(i*7.3) : 0.7 + 1.5*srand(i*7.3),
+        v: big ? 0.035 + 0.105*srand(i*5.1) : 0.004 + 0.008*srand(i*5.1),
+        wob: 1 + 3.4*srand(i*11.7),
+        big,
+        ph: srand(i*13.1)*6.283
+      });
+    }
+  }
+  return _DROPS_ARR;
+}
+function drawDropsArr(ctx, w, h, T){
+  const arr = dropsArr();
+  const sc = Math.max(0.6, Math.min(2, h/720));
+  ctx.save();
+  for (const dp of arr){
+    let x = dp.x*w, y, r = dp.r*sc;
+    if (dp.big){
+      const fall = ((dp.y0 + T*dp.v) % 1.18);
+      y = fall*(h*1.1) - h*0.05;
+      x += Math.sin(fall*26 + dp.ph)*dp.wob*sc;
+      r *= 1 + 0.18*Math.sin(T*2.4+dp.ph);
+      const tl = r*7.5;
+      const tg = ctx.createLinearGradient(x, y-tl, x, y);
+      tg.addColorStop(0, "rgba(190,225,255,0)");
+      tg.addColorStop(1, "rgba(190,225,255,0.16)");
+      ctx.fillStyle = tg;
+      ctx.fillRect(x - r*0.38, Math.max(-2, y-tl), r*0.76, tl);
+    } else {
+      y = dp.y0*h + Math.sin(T*0.55 + dp.ph)*1.4*sc;
+      x += Math.sin(T*0.3 + dp.ph*2)*0.8*sc;
+    }
+    if (y < -30 || y > h+30) continue;
+    const g = ctx.createRadialGradient(x - r*0.35, y - r*0.45, r*0.12, x, y, r*1.15);
+    g.addColorStop(0, "rgba(255,255,255,0.85)");
+    g.addColorStop(0.32, "rgba(205,232,255,0.30)");
+    g.addColorStop(0.72, "rgba(120,170,230,0.16)");
+    g.addColorStop(1, "rgba(6,12,26,0.30)");
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.ellipse(x, y, r, r*1.12, 0, 0, Math.PI*2);
+    ctx.fill();
+    ctx.fillStyle = "rgba(255,255,255,0.55)";
+    ctx.beginPath();
+    ctx.arc(x - r*0.32, y - r*0.42, Math.max(0.5, r*0.16), 0, Math.PI*2);
+    ctx.fill();
+  }
   ctx.restore();
 }
 function wrapLines(ctx, text, maxWidth){
@@ -2326,8 +2424,45 @@ const player = (() => {
   function bindToggle(id, get, set){
     st(id).addEventListener("click", () => { set(!get()); settingsSyncAll(); afterSettings(); markDirty(); });
   }
+  let dropRaf = 0;
+  function dropsLoop(){
+    cancelAnimationFrame(dropRaf);
+    const cv = $("drop-canvas");
+    if (!cv) return;
+    if (!S.effects.drops){ cv.style.display = "none"; return; }
+    cv.style.display = "block";
+    const stg = $("lyric-stage");
+    const loop = () => {
+      if (!S.effects.drops){ stopDrops(); return; }
+      const W = Math.max(64, stg.clientWidth || document.documentElement.clientWidth || (typeof window!=="undefined" && window.innerWidth) || 1280);
+      const H = Math.max(64, stg.clientHeight || document.documentElement.clientHeight || (typeof window!=="undefined" && window.innerHeight) || 720);
+      if (cv.width !== W || cv.height !== H){ cv.width = W; cv.height = H; }
+      const g = cv.getContext("2d");
+      if (g){
+        g.clearRect(0,0,W,H);
+        const fog = g.createLinearGradient(0,0,0,H);
+        fog.addColorStop(0,"rgba(170,210,255,0.05)");
+        fog.addColorStop(0.5,"rgba(170,210,255,0.015)");
+        fog.addColorStop(1,"rgba(170,210,255,0.05)");
+        g.fillStyle = fog; g.fillRect(0,0,W,H);
+        drawDropsArr(g, W, H, (typeof performance!=="undefined" ? performance.now() : Date.now())/1000);
+      }
+      dropRaf = requestAnimationFrame(loop);
+    };
+    loop();
+  }
+  function stopDrops(){
+    cancelAnimationFrame(dropRaf); dropRaf = 0;
+    const cv = $("drop-canvas");
+    if (cv){
+      cv.style.display = "none";
+      try{ const g = cv.getContext("2d"); if (g) g.clearRect(0,0,cv.width||0,cv.height||0); }catch(err){}
+    }
+  }
+
   function afterSettings(){
     $("stage").classList.toggle("uw", !!S.effects.underwater);
+    if (S.effects.drops) dropsLoop(); else stopDrops();
     if (S.effects.fullText) ftStartLoop(); else ftStopLoop();
     renderLyric(true);
     if (S.effects.particles) particlesLoop(); else stopParticles();
@@ -2377,6 +2512,7 @@ const player = (() => {
     $("ef-zeroEmoji").classList.toggle("on", e.zeroEmoji);
     for (const b of $$("[data-mode]")) b.classList.toggle("on", b.dataset.mode===S.mode);
     $("ef-underwater").classList.toggle("on", !!e.underwater);
+    $("ef-drops").classList.toggle("on", !!e.drops);
     const cdS = S.card;
     st("cd-font").value = cdS.font;
     st("cd-scale").value = cdS.scale; $("v-cdscale").textContent = cdS.scale;
@@ -2465,6 +2601,7 @@ const player = (() => {
     for (const b of $$("[data-mode]")) b.addEventListener("click", ()=> setMode(b.dataset.mode));
     for (const op of $$("select#cd-font option")){ if (op.value) op.style.fontFamily = `"${op.value}", sans-serif`; }
     $("ef-underwater").addEventListener("click", ()=>{ S.effects.underwater = !S.effects.underwater; $("stage").classList.toggle("uw", !!S.effects.underwater); settingsSyncAll(); markDirty(); });
+    $("ef-drops").addEventListener("click", ()=>{ S.effects.drops = !S.effects.drops; if (S.effects.drops) dropsLoop(); else stopDrops(); settingsSyncAll(); markDirty(); });
     st("cd-font").addEventListener("change", (ev)=>{ S.card.font = ev.target.value; settingsSyncAll(); paintCard(); markDirty(); });
     [["cd-scale","scale"],["cd-radius","radius"],["cd-alpha","bgAlpha"]].forEach(pair=>{
       st(pair[0]).addEventListener("input", (ev)=>{ S.card[pair[1]] = +ev.target.value; settingsSyncAll(); paintCard(); markDirty(); });
@@ -2809,7 +2946,7 @@ const player = (() => {
   function leave(stopAll){
     window.removeEventListener("keydown", keyHandler);
     clearInterval(refSyncTimer);
-    stopParticles(); stopWaveform();
+    stopParticles(); stopWaveform(); stopDrops();
     if (media){ try{ media.pause(); }catch(err){} }
     try{ $("ref-video").pause(); }catch(err){}
     try{ $("bg-video").pause(); }catch(err){}
@@ -2834,13 +2971,13 @@ const exporterImpl = (() => {
     bold:true, italic:false, underline:false, uppercase:false,
     outline:false, outlineColor:"#000000", outlineWidth:2, letterSpacing:0, fontFamily:"Space Grotesk",
     particles:false, particleColor:"#d4ff3f", glow:false, glowColor:"#d4ff3f", glowIntensity:20,
-    zeroEmoji:false, gapClear:5,
+    zeroEmoji:true, gapClear:5, drops:false,
     showPreview:false, activePreset:"",
     bgDim:45, watermark:"", watermarkPos:"br", textPos:"middle",
     showProgressBar:true, textBand:false, bandOpacity:55,
     fadeInOut:false, fadeDur:1,
     animEnabled:true, animType:"fade", animSpeed:300,
-    layout:"auto", mode:"lyric", uw:false, card:{ ...defaultCard, cut:{ ...defaultCard.cut } },
+    layout:"auto", mode:"lyric", uw:false, drops:false, card:{ ...defaultCard, cut:{ ...defaultCard.cut } },
     fileNameTpl:"{nama}_subtitle",
     status:"idle", progress:0, audioDuration:0
   };
@@ -2873,20 +3010,32 @@ const exporterImpl = (() => {
   }
   function drawLyricCard(ctx, w, h, t, idx, scale, uwOn, totalDuration){
     const cd = P.card || {};
+    const fam = cd.font ? `"${cd.font}","Baloo 2","Fredoka","Space Grotesk",sans-serif` : `"Space Grotesk",sans-serif`;
     const cw = Math.round(Math.min(w*0.88, h*1.55*0.66*((cd.scale||100)/100)));
     const pd = Math.round(cw*0.05);
     const cov = Math.round(cw*0.19);
-    const chh = pd*2 + cov + Math.round(cw*0.31) + Math.round(cw*0.09);
+    const fsL = Math.round(cw*0.062);
+    const lh2 = Math.round(fsL*1.28);
+    let txt = idx>=0 ? String((S.lyrics[idx] && S.lyrics[idx].text) || "") : "";
+    if (P.zeroEmoji && idx>=0) txt = removeEmojis(txt);
+    if (P.uppercase) txt = txt.toUpperCase();
+    ctx.save();
+    ctx.font = `700 ${fsL}px ${fam}`;
+    const lns = txt ? wrapLines(ctx, txt, cw - pd*2).slice(0,3) : [];
+    ctx.restore();
+    const lyH = lns.length ? lns.length*lh2 + Math.round(fsL*0.35) : Math.round(fsL*0.72);
+    const gap = Math.round(cw*0.030);
+    const barH = Math.round(cw*0.030);
+    const chh = pd*2 + cov + gap + lyH + gap + barH;
     const x0 = Math.round((w-cw)/2), y0 = Math.round((h-chh)/2 - h*0.015);
     ctx.save();
-    if (uwOn){ ctx.translate(Math.sin(t*0.9)*6*scale, Math.cos(t*0.7)*5*scale); ctx.rotate(Math.sin(t*0.5)*0.005); }
+    if (uwOn){ ctx.translate(Math.sin(t*0.9)*3*scale, Math.cos(t*0.7)*2.4*scale); ctx.rotate(Math.sin(t*0.5)*0.0022); }
     ctx.shadowColor = "rgba(0,0,0,.55)"; ctx.shadowBlur = 44*scale; ctx.shadowOffsetY = 10*scale;
     ctx.fillStyle = hexToRgba(cd.bgColor||"#0c122a", ((typeof cd.bgAlpha==="number"?cd.bgAlpha:78)/100));
     rrPath(ctx, x0, y0, cw, chh, (cd.radius||22)*scale);
     ctx.fill();
     ctx.shadowColor = "transparent"; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
-    ctx.strokeStyle = "rgba(255,255,255,.15)"; ctx.lineWidth = 1.5*scale; ctx.stroke();
-    const fam = cd.font ? `"${cd.font}","Baloo 2","Fredoka","Space Grotesk",sans-serif` : `"Space Grotesk",sans-serif`;
+    ctx.strokeStyle = "rgba(140,190,255,.16)"; ctx.lineWidth = 1.5*scale; ctx.stroke();
     const cx0 = x0+pd, cy0 = y0+pd;
     if (coverImg && coverImg.complete && (coverImg.naturalWidth>0)){
       ctx.save();
@@ -2920,24 +3069,18 @@ const exporterImpl = (() => {
     ty += cov*0.19;
     ctx.font = `500 ${Math.max(9,Math.round(cov*0.09))}px "IBM Plex Mono", monospace`; ctx.fillStyle = "rgba(255,255,255,.45)";
     ctx.fillText("Lyrics:", mx, ty);
-    const lyy = cy0 + cov + cw*0.05;
-    const fsL = Math.round(cw*0.062);
+    const lyy = cy0 + cov + gap + fsL;
     ctx.font = `700 ${fsL}px ${fam}`; ctx.fillStyle = cd.color||"#ffffff";
     ctx.shadowColor = "rgba(0,0,0,.5)"; ctx.shadowBlur = 16*scale; ctx.shadowOffsetY = 2*scale;
-    let txt = idx>=0 ? String((S.lyrics[idx] && S.lyrics[idx].text) || "") : "";
-    if (P.zeroEmoji && idx>=0) txt = removeEmojis(txt);
-    if (P.uppercase) txt = txt.toUpperCase();
-    const lns = txt ? wrapLines(ctx, txt, cw - pd*2) : [];
-    const lh2 = Math.round(fsL*1.3);
-    const shown = lns.slice(0,3);
-    shown.forEach((ln,i)=>{
+    lns.forEach((ln,i)=>{
       const wob = uwOn ? Math.sin(t*1.8 + i*0.95)*2.6*scale : 0;
       ctx.fillText(ln, x0+pd, lyy + i*lh2 + wob);
     });
     ctx.shadowColor = "transparent"; ctx.shadowBlur = 0; ctx.shadowOffsetY = 0;
-    const byY = y0 + chh - pd - cw*0.012;
+    const byY = y0 + chh - pd - barH*0.5 + 1;
     const s0 = P.clipEnabled ? (P.clipStart||0) : 0;
     let e0 = (P.clipEnabled && P.clipEnd>P.clipStart) ? P.clipEnd : (totalDuration>0 ? totalDuration : (P.audioDuration||0));
+    if (P.clipEnabled && P.audioDuration>0 && e0>P.audioDuration) e0 = P.audioDuration;
     if (!(e0>s0)) e0 = Math.max(e0, s0+0.1);
     const tt = Math.max(s0, Math.min(e0, t));
     const pct = Math.max(0, Math.min(1, (tt - s0)/Math.max(0.01, e0-s0)));
@@ -2960,7 +3103,16 @@ const exporterImpl = (() => {
     ctx.textAlign = "center"; ctx.textBaseline = "middle";
     ctx.restore();
   }
+  let uwOff = null;
+  function ensureUwOff(ww, hh){
+    if (!uwOff) uwOff = document.createElement("canvas");
+    if (uwOff.width !== ww || uwOff.height !== hh){ uwOff.width = ww; uwOff.height = hh; }
+    return uwOff;
+  }
   function drawFrame(ctx, currentTime, w, h, totalDuration){
+    const uwAct = !!P.uw;
+    const baseCtx = ctx;
+    if (uwAct){ ctx = ensureUwOff(w,h).getContext("2d"); }
     ctx.fillStyle = P.bgColor;
     ctx.fillRect(0,0,w,h);
     if (bgImg || (bgVid && bgVid.readyState >= 2)){
@@ -3118,6 +3270,28 @@ const exporterImpl = (() => {
         ctx.restore();
       }
     }
+    const outCtx = uwAct ? baseCtx : ctx;
+    if (uwAct){
+      const off = ensureUwOff(w,h);
+      const wob = 7*scale;
+      outCtx.save();
+      for (let y=0; y<h; y+=6){
+        const ox = Math.sin(y*0.017 + adjustedT*2.2)*wob + Math.sin(y*0.041 + adjustedT*1.25)*wob*0.45;
+        const oy = Math.sin(y*0.013 - adjustedT*1.7)*1.6*scale;
+        outCtx.drawImage(off, 0, y, w, 6, ox, y+oy, w, 6);
+      }
+      try { outCtx.globalCompositeOperation = "overlay"; } catch(err){}
+      const sh = Math.round((Math.sin(adjustedT*0.9)*0.5+0.5)*h);
+      const gsh = outCtx.createLinearGradient(0, sh - h*0.55, w, sh + h*0.55);
+      gsh.addColorStop(0, "rgba(140,210,255,0)");
+      gsh.addColorStop(0.5, "rgba(140,210,255,0.10)");
+      gsh.addColorStop(1, "rgba(140,210,255,0)");
+      outCtx.fillStyle = gsh;
+      outCtx.fillRect(0,0,w,h);
+      try { outCtx.globalCompositeOperation = "source-over"; } catch(err){}
+      outCtx.restore();
+    }
+    if (P.drops) drawDropsArr(outCtx, w, h, Math.max(0, currentTime));
   }
   function sizeCanvas(cv){
     const { w, h } = canvasSize();
@@ -3135,7 +3309,7 @@ const exporterImpl = (() => {
     particlesArr = [];
     const previewDur = P.clipEnabled ? Math.max(0, P.clipEnd-P.clipStart) : P.audioDuration;
     const useCardPv = P.layout==="card" || (P.layout==="auto" && P.mode==="card");
-    if ((P.animEnabled && S.lyrics.length>0) || bgVid || P.uw || useCardPv){
+    if ((P.animEnabled && S.lyrics.length>0) || bgVid || P.uw || P.drops || useCardPv){
       const anchorIdx = getCurrentLyricIndex(S.lyrics, previewTime + S.offset/1000);
       const anchor = (anchorIdx>=0 && S.lyrics[anchorIdx]) ? S.lyrics[anchorIdx] : (S.lyrics[0] || {time: previewTime});
       const cycleMs = Math.max(1200, (P.animSpeed||300) + 900);
@@ -3639,6 +3813,7 @@ const exporterImpl = (() => {
     P.clipEnabled = false; P.clipStart = 0; P.clipEnd = 0;
     P.mode = init.mode || "lyric";
     P.uw = !!(init.effects && init.effects.underwater);
+    P.drops = !!(init.effects && init.effects.drops);
     P.card = { ...defaultCard, ...(init.card||{}), cut: { ...defaultCard.cut, ...((init.card&&init.card.cut)||{}) } };
     P.layout = "auto";
     setExportCover(S.cardCover || null);
